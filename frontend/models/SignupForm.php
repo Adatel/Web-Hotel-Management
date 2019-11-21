@@ -18,7 +18,10 @@ class SignupForm extends Model
     public $nif;
     public $telemovel;
     public $morada;
-
+    public $is_admin;
+    public $is_funcionario;
+    public $is_cliente;
+    public $id_user;
 
     /**
      * {@inheritdoc}
@@ -27,10 +30,9 @@ class SignupForm extends Model
     {
         return [
 
-            [['nome', 'nif', 'telemovel', 'morada', 'id_user'], 'required'],
+           [['nome', 'nif', 'telemovel', 'morada', 'id_user'], 'required'],
             [['nif', 'telemovel', 'is_admin', 'is_funcionario', 'is_cliente', 'id_user'], 'integer'],
             [['nome', 'morada'], 'string', 'max' => 80],
-            [['nif'], 'unique'],
 
             ['username', 'trim'],
             ['username', 'required'],
@@ -52,32 +54,46 @@ class SignupForm extends Model
      * Signs user up.
      *
      * @return bool whether the creating new account was successful and email was sent
-     * @throws \yii\base\Exception
      */
     public function signup()
     {
-        if (!$this->validate()) {
+        /*var_dump($this->nome);
+        die();*/
+        /*if (!$this->validate()) {
             return null;
-        }
+        }*/
 
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-        $user->save();
+            $user = new User();
+            $user->username = $this->username;
+            $user->email = $this->email;
+            $user->setPassword($this->password);
+            $user->generateAuthKey();
+            $user->save(false);
+            $user->generateEmailVerificationToken();
+            $user->save();
 
-        /*
-        $profile = new Profile();
-        $profile->nome = $this->nome;
-        $profile->nif = $this->nif;
-        $profile->telemovel = $this->telemovel;
-        $profile->morada = $this->morada;
-        */
+            $profile = new Profile();
+            $profile->nome = $this->nome;
+            $profile->nif = $this->nif;
+            $profile->telemovel = $this->telemovel;
+            $profile->morada = $this->morada;
+            $profile->is_admin = 0;
+            $profile->is_funcionario = 0;
+            $profile->is_cliente = 1;
+            $profile->id_user = $user->id;
+            $profile->save(false);
+            $profile->save();
 
-        return $user && $this->sendEmail($user);
+            // the following three lines were added:
+           /* $auth = \Yii::$app->authManager;
+            $authorRole = $auth->getRole('author');
+            $auth->assign($authorRole, $user->getId());
+*/
+            //return $user;
+            return $this->sendEmail($user);
+        //}
 
+        //return null;
     }
 
     /**
