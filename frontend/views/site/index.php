@@ -2,16 +2,22 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+use yii\helpers\Html;
+
+$this->title = 'Adatel';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1>Bem - Vindo!</h1>
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+        <p class="lead">Ainda não fez reserva? Faça-a já!</p>
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <p>
+            <?php
+                echo Html::a('Criar Reserva', ['/reserva/create'], ['class'=>'btn btn-success grid-button'])
+            ?>
+        </p>
     </div>
 
     <div class="body-content">

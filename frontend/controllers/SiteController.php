@@ -13,7 +13,6 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\SignupFormOld;
 use frontend\models\ContactForm;
 
 /**
