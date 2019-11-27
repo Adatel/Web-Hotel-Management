@@ -2,8 +2,6 @@
 
 namespace common\models;
 
-use app\models\Pagamento;
-use app\models\ReservaQuarto;
 use Yii;
 
 /**
@@ -14,13 +12,13 @@ use Yii;
  * @property string $data_saida
  * @property int $num_pessoas
  * @property int $num_quartos
- * @property int $quarto_solteiro
+ * @property string $tipo_quarto
+ * @property int|null $quarto_solteiro
  * @property int $quarto_duplo
  * @property int $quarto_familia
  * @property int $quarto_casal
- * @property int $tipo_quarto
  * @property int $id_cliente
- * @property int $id_funcionario
+ * @property int|null $id_funcionario
  *
  * @property Pagamento[] $pagamentos
  * @property Profile $cliente
@@ -43,9 +41,10 @@ class Reserva extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'id_cliente'], 'required'],
+            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'tipo_quarto', 'id_cliente'], 'required'],
             [['data_entrada', 'data_saida'], 'safe'],
-            [['num_pessoas', 'num_quartos', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'tipo_quarto', 'id_cliente', 'id_funcionario'], 'integer'],
+            [['num_pessoas', 'num_quartos', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'id_cliente', 'id_funcionario'], 'integer'],
+            [['tipo_quarto'], 'string', 'max' => 50],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
             [['id_funcionario'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_funcionario' => 'id_user']],
         ];
@@ -62,11 +61,11 @@ class Reserva extends \yii\db\ActiveRecord
             'data_saida' => 'Data Saida',
             'num_pessoas' => 'Num Pessoas',
             'num_quartos' => 'Num Quartos',
+            'tipo_quarto' => 'Tipo Quarto',
             'quarto_solteiro' => 'Quarto Solteiro',
             'quarto_duplo' => 'Quarto Duplo',
             'quarto_familia' => 'Quarto Familia',
             'quarto_casal' => 'Quarto Casal',
-            'tipo_quarto' => 'Tipo Quarto',
             'id_cliente' => 'Id Cliente',
             'id_funcionario' => 'Id Funcionario',
         ];

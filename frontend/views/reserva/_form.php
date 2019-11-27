@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reserva */
@@ -12,9 +13,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'data_entrada')->textInput() ?>
+    <!-- https://demos.krajee.com/widget-details/datepicker -->
+    <?= $form->field($model, 'data_entrada')->widget(DatePicker::className(), [
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
+        ]
+    ]); ?>
 
-    <?= $form->field($model, 'data_saida')->textInput() ?>
+    <?= $form->field($model, 'data_saida')->widget(DatePicker::className(), [
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
+        ]
+    ]); ?>
 
     <?= $form->field($model, 'num_pessoas')->textInput() ?>
 
