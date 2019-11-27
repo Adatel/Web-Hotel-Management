@@ -13,10 +13,12 @@ use Yii;
  * @property string $data_entrada
  * @property string $data_saida
  * @property int $num_pessoas
+ * @property int $num_quartos
  * @property int $quarto_solteiro
  * @property int $quarto_duplo
  * @property int $quarto_familia
  * @property int $quarto_casal
+ * @property int $tipo_quarto
  * @property int $id_cliente
  * @property int $id_funcionario
  *
@@ -41,9 +43,9 @@ class Reserva extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_entrada', 'data_saida', 'num_pessoas', 'id_cliente'], 'required'],
+            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'id_cliente'], 'required'],
             [['data_entrada', 'data_saida'], 'safe'],
-            [['num_pessoas', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'id_cliente', 'id_funcionario'], 'integer'],
+            [['num_pessoas', 'num_quartos', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'tipo_quarto', 'id_cliente', 'id_funcionario'], 'integer'],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
             [['id_funcionario'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_funcionario' => 'id_user']],
         ];
@@ -59,10 +61,12 @@ class Reserva extends \yii\db\ActiveRecord
             'data_entrada' => 'Data Entrada',
             'data_saida' => 'Data Saida',
             'num_pessoas' => 'Num Pessoas',
+            'num_quartos' => 'Num Quartos',
             'quarto_solteiro' => 'Quarto Solteiro',
             'quarto_duplo' => 'Quarto Duplo',
             'quarto_familia' => 'Quarto Familia',
             'quarto_casal' => 'Quarto Casal',
+            'tipo_quarto' => 'Tipo Quarto',
             'id_cliente' => 'Id Cliente',
             'id_funcionario' => 'Id Funcionario',
         ];

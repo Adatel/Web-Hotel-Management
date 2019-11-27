@@ -18,17 +18,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'num_pessoas')->textInput() ?>
 
-    <?= $form->field($model, 'quarto_solteiro')->textInput() ?>
+    <?php echo $form->field($model, 'num_quartos')->textInput(),
+    $form->field($model, 'tipo_quarto[]')->dropDownList(['1' => 'Quarto de Solteiro', '2' => 'Quarto Duplo', '3' => 'Quarto de Família', '4' => 'Quarto de Casal'])
+   // Html::buttonInput('+', ['class' => 'btn btn-success', 'name' => 'submit', 'value' => '+']);
 
-    <?= $form->field($model, 'quarto_duplo')->textInput() ?>
-
-    <?= $form->field($model, 'quarto_familia')->textInput() ?>
-
-    <?= $form->field($model, 'quarto_casal')->textInput() ?>
-
-    <?= $form->field($model, 'id_cliente')->textInput() ?>
-
-    <?= $form->field($model, 'id_funcionario')->textInput() ?>
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
