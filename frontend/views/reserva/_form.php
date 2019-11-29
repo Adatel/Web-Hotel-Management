@@ -30,10 +30,16 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'num_pessoas')->textInput() ?>
 
-    <?php echo $form->field($model, 'num_quartos')->textInput(),
-    $form->field($model, 'tipo_quarto[]')->dropDownList(['1' => 'Quarto de Solteiro', '2' => 'Quarto Duplo', '3' => 'Quarto de Família', '4' => 'Quarto de Casal'])
-   // Html::buttonInput('+', ['class' => 'btn btn-success', 'name' => 'submit', 'value' => '+']);
+    <?= $form->field($model, 'num_quartos')->textInput(['type' => 'number','class' => 'col-md-5']) ?>
 
+    <?= $form->field($model, 'tipo_quarto')->textInput(['maxlength' => true, 'class' => 'col-md-6']) ?>
+    <?= Html::buttonInput('+', ['class' => 'btn btn-success col-md-1', 'name' => 'submit', 'value' => '+']); ?>
+
+
+  <?php  /*echo $form->field($model, 'num_quartos')->textInput(),
+    $form->field($model, 'tipo_quarto[]')->dropDownList(['a' => 'Quarto de Solteiro', 'b' => 'Quarto Duplo', 'c' => 'Quarto de Família', 'd' => 'Quarto de Casal']),
+    Html::buttonInput('+', ['class' => 'btn btn-success', 'name' => 'submit', 'value' => '+']);
+*/
     ?>
 
     <div class="form-group">

@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Reserva */
+/* @var $model common\models\ReservaQuarto */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Reservas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Reserva Quartos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="reserva-view">
+<div class="reserva-quarto-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -30,15 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'data_entrada',
-            'data_saida',
-            'num_pessoas',
-            'num_quartos',
-            'quarto_solteiro',
-            'quarto_duplo',
-            'quarto_familia',
-            'quarto_casal',
-            'id_cliente',
+            'tipo_quarto',
+            'id_reserva',
+            'id_quarto',
         ],
     ]) ?>
 

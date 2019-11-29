@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use common\models\ReservaQuarto;
 use Yii;
 
 /**
@@ -18,11 +19,10 @@ use Yii;
  * @property int $quarto_familia
  * @property int $quarto_casal
  * @property int $id_cliente
- * @property int|null $id_funcionario
+ * @property int $id_reserva
  *
  * @property Pagamento[] $pagamentos
  * @property Profile $cliente
- * @property Profile $funcionario
  * @property ReservaQuarto[] $reservaQuartos
  */
 class Reserva extends \yii\db\ActiveRecord
@@ -43,10 +43,7 @@ class Reserva extends \yii\db\ActiveRecord
         return [
             [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'tipo_quarto', 'id_cliente'], 'required'],
             [['data_entrada', 'data_saida'], 'safe'],
-            [['num_pessoas', 'num_quartos', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'id_cliente', 'id_funcionario'], 'integer'],
-            [['tipo_quarto'], 'string', 'max' => 50],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
-            [['id_funcionario'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_funcionario' => 'id_user']],
         ];
     }
 
@@ -59,15 +56,13 @@ class Reserva extends \yii\db\ActiveRecord
             'id' => 'ID',
             'data_entrada' => 'Data Entrada',
             'data_saida' => 'Data Saida',
-            'num_pessoas' => 'Num Pessoas',
-            'num_quartos' => 'Num Quartos',
-            'tipo_quarto' => 'Tipo Quarto',
-            'quarto_solteiro' => 'Quarto Solteiro',
+            'num_pessoas' => 'Número de Pessoas',
+            'num_quartos' => 'Número de Quartos',
+            'quarto_solteiro' => 'Quarto de Solteiro',
             'quarto_duplo' => 'Quarto Duplo',
-            'quarto_familia' => 'Quarto Familia',
-            'quarto_casal' => 'Quarto Casal',
+            'quarto_familia' => 'Quarto de Familia',
+            'quarto_casal' => 'Quarto de Casal',
             'id_cliente' => 'Id Cliente',
-            'id_funcionario' => 'Id Funcionario',
         ];
     }
 
@@ -85,14 +80,6 @@ class Reserva extends \yii\db\ActiveRecord
     public function getCliente()
     {
         return $this->hasOne(Profile::className(), ['id_user' => 'id_cliente']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFuncionario()
-    {
-        return $this->hasOne(Profile::className(), ['id_user' => 'id_funcionario']);
     }
 
     /**
