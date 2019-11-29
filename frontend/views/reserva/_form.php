@@ -33,7 +33,6 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'num_quartos')->textInput(['type' => 'number','class' => 'col-md-5']) ?>
 
     <?= $form->field($model, 'tipo_quarto')->textInput(['maxlength' => true, 'class' => 'col-md-6']) ?>
-    <?= Html::buttonInput('+', ['class' => 'btn btn-success col-md-1', 'name' => 'submit', 'value' => '+']); ?>
 
 
   <?php  /*echo $form->field($model, 'num_quartos')->textInput(),
