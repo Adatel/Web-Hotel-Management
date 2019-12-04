@@ -24,9 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'num_quarto',
-            'designacao_tipo',
+            'id_tipo',
             'estado',
-            'preco_noite',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "quarto".
  *
  * @property int $num_quarto
- * @property string $designacao_tipo
- * @property int $estado
- * @property string $preco_noite
+ * @property int $id_tipo
+ * @property int|null $estado
  *
+ * @property TipoQuarto $tipo
  * @property ReservaQuarto[] $reservaQuartos
  */
 class Quarto extends \yii\db\ActiveRecord
@@ -30,11 +30,10 @@ class Quarto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['num_quarto', 'designacao_tipo', 'preco_noite'], 'required'],
-            [['num_quarto', 'estado'], 'integer'],
-            [['preco_noite'], 'number'],
-            [['designacao_tipo'], 'string', 'max' => 50],
+            [['num_quarto', 'id_tipo'], 'required'],
+            [['num_quarto', 'id_tipo', 'estado'], 'integer'],
             [['num_quarto'], 'unique'],
+            [['id_tipo'], 'exist', 'skipOnError' => true, 'targetClass' => TipoQuarto::className(), 'targetAttribute' => ['id_tipo' => 'id']],
         ];
     }
 
@@ -45,10 +44,17 @@ class Quarto extends \yii\db\ActiveRecord
     {
         return [
             'num_quarto' => 'Num Quarto',
-            'designacao_tipo' => 'Designacao Tipo',
+            'id_tipo' => 'Id Tipo',
             'estado' => 'Estado',
-            'preco_noite' => 'Preco Noite',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTipo()
+    {
+        return $this->hasOne(TipoQuarto::className(), ['id' => 'id_tipo']);
     }
 
     /**

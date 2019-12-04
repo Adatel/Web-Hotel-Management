@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Reserva */
+/* @var $model common\models\TipoQuarto */
 
-$this->title = 'Criar Reserva';
-$this->params['breadcrumbs'][] = ['label' => 'Reservas', 'url' => ['index']];
+$this->title = 'Create Tipo Quarto';
+$this->params['breadcrumbs'][] = ['label' => 'Tipo Quartos', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="reserva-create">
+<div class="tipo-quarto-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

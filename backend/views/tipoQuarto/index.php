@@ -6,15 +6,15 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Reservas';
+$this->title = 'Tipo Quartos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="reserva-index">
+<div class="tipo-quarto-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Criar Reserva', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Tipo Quarto', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
@@ -22,15 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'data_entrada',
-            'data_saida',
-            'num_pessoas',
-            'num_quartos',
-            //'quarto_solteiro',
-            //'quarto_duplo',
-            //'quarto_familia',
-            //'quarto_casal',
-            //'id_cliente',
+
+            'id',
+            'designacao',
+            'preco_noite',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
