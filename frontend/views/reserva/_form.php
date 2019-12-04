@@ -28,21 +28,20 @@ use kartik\date\DatePicker;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'num_pessoas')->textInput() ?>
+    <?= $form->field($model, 'num_pessoas')->textInput(['type' => 'number', 'value' => 0]) ?>
 
-    <?= $form->field($model, 'num_quartos')->textInput(['type' => 'number','class' => 'col-md-5']) ?>
+    <?= $form->field($model, 'num_quartos')->textInput(['type' => 'number', 'value' => 0]) ?>
 
-    <?= $form->field($model, 'tipo_quarto')->textInput(['maxlength' => true, 'class' => 'col-md-6']) ?>
+    <?= $form->field($model, 'quarto_solteiro')->textInput(['type' => 'number', 'value' => 0]) ?>
 
+    <?= $form->field($model, 'quarto_casal')->textInput(['type' => 'number', 'value' => 0]) ?>
 
-  <?php  /*echo $form->field($model, 'num_quartos')->textInput(),
-    $form->field($model, 'tipo_quarto[]')->dropDownList(['a' => 'Quarto de Solteiro', 'b' => 'Quarto Duplo', 'c' => 'Quarto de Família', 'd' => 'Quarto de Casal']),
-    Html::buttonInput('+', ['class' => 'btn btn-success', 'name' => 'submit', 'value' => '+']);
-*/
-    ?>
+    <?= $form->field($model, 'quarto_duplo')->textInput(['type' => 'number', 'value' => 0]) ?>
+
+    <?= $form->field($model, 'quarto_familia')->textInput(['type' => 'number', 'value' => 0]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Criar Reserva', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

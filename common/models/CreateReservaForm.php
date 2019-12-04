@@ -24,6 +24,8 @@ class CreateReservaForm extends Model {
     public $quarto_casal;
     public $tipo_quarto;
 
+    public $tipo1 = 0, $tipo2 = 0, $tipo3 = 0, $tipo4 = 0;
+
 
     public function rules()
     {
@@ -41,6 +43,7 @@ class CreateReservaForm extends Model {
 
     public function reserva(){
 
+
         $user = Yii::$app->user->id;
         //var_dump($user);
 
@@ -50,17 +53,48 @@ class CreateReservaForm extends Model {
         $reserva->num_pessoas = $this->num_pessoas;
         $reserva->num_quartos = $this->num_quartos;
         $reserva->quarto_solteiro = $this->quarto_solteiro;
+        $reserva->quarto_casal = $this->quarto_casal;
         $reserva->quarto_duplo = $this->quarto_duplo;
         $reserva->quarto_familia = $this->quarto_familia;
-        $reserva->quarto_casal = $this->quarto_casal;
         $reserva->id_cliente = $user;
-        $reserva->save();
 
-        $reserva_quarto = new ReservaQuarto();
-        $reserva_quarto->id_reserva = $reserva->id;
-        $reserva_quarto->tipo_quarto = $this->tipo_quarto;
-        $reserva_quarto->save();
+        $count = $this->quarto_solteiro + $this->quarto_duplo + $this->quarto_familia + $this->quarto_casal;
 
+        if ($count != $this->num_quartos){
+            echo '<script type="text/javascript">';
+            echo ' alert("O número de quartos nao coincide com os quartos que selecionou!")';
+            echo '</script>';
+        } else {
+
+            $this->tipo1 = Quarto::find()
+                ->where(['estado' => 0, 'id_tipo' => 1])->count();
+            $this->tipo2 = Quarto::find()
+                ->where(['estado' => 0, 'id_tipo' => 2])->count();
+            $this->tipo3 = Quarto::find()
+                ->where(['estado' => 0, 'id_tipo' => 3])->count();
+            $this->tipo4 = Quarto::find()
+                ->where(['estado' => 0, 'id_tipo' => 4])->count();
+
+            var_dump($this->tipo1);
+            var_dump($this->tipo2);
+            var_dump($this->tipo3);
+            var_dump($this->tipo4);
+            die();
+            $this->tipo1 = 0;
+            $this->tipo2 = 0;
+            $this->tipo3 = 0;
+            $this->tipo4 = 0;
+            var_dump($this->tipo1);
+            die();
+
+            $reserva->save();
+
+            $reserva_quarto = new ReservaQuarto();
+            $reserva_quarto->id_reserva = $reserva->id;
+            $reserva_quarto->tipo_quarto = "Quarto Solteiro";//$this->tipo_quarto;
+            $reserva_quarto->id_quarto = 1;
+            $reserva_quarto->save();
+        }
     }
 
 }
