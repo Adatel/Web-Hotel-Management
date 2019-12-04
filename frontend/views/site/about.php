@@ -8,9 +8,25 @@ $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>This is the About page. You may modify the following file to customize its content:</p>
-
-    <code><?= __FILE__ ?></code>
+    <section class="intro-section spad">
+        <div class="container">
+            <div class="row intro-text">
+                <div class="col-lg-6">
+                    <div class="intro-left">
+                        <div class="section-title">
+                            <h2>Informações do <br>Hotel</h2>
+                        </div>
+                        <p>O hotel fornece uma estadia excelente, com inúmeros quartos, serviços de quarto de topo, e refeições classificadas como 5 estrelas.
+                            Construido em 1890 e comprado por uma empresa inovadora, o hotel Adatel oferece uma das melhores experências do mercado.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="intro-right">
+                        <h6>Foto atual do hotel</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>

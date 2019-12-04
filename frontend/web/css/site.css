@@ -1,7 +1,72 @@
 html,
 body {
     height: 100%;
+    font-family: "Montserrat Alternates", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    background: none;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-weight: 400;
+    font-family: "Montserrat Alternates", sans-serif;
+}
+
+h1 {
+    font-size: 70px;
+}
+
+h2 {
+    font-size: 36px;
+}
+
+h3 {
+    font-size: 30px;
+}
+
+h4 {
+    font-size: 24px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 14px;
+    color: #9d9d9d;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 500;
+    line-height: 28px;
+    margin: 0 0 15px 0;
+}
+
+.intro-text {
+    border: 15px solid #474df9;
+    padding-left: 50px;
+    padding-top: 58px;
+    padding-bottom: 57px;
+    padding-right: 45px;
+}
+
+.intro-right {
+    padding-top: 168px;
+}
+
+.intro-right p {
+    margin-bottom: 31px;
+}
+
 
 .wrap {
     min-height: 100%;
