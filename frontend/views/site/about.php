@@ -24,9 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-lg-6">
                     <div class="intro-right">
                         <h6>Foto atual do hotel</h6>
+                        <?php echo Html::img('@web/images/fotoHotel.jpg', array('width' => 500, 'height' => 400)) ?>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
     </section>
 </div>
