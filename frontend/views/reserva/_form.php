@@ -28,11 +28,9 @@ use kartik\date\DatePicker;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'num_pessoas')->textInput(['type' => 'number', 'value' => 0]) ?>
+    <?= $form->field($model, 'num_pessoas')->textInput(['type' => 'number', 'value' => 1, 'min' => 1]) ?>
 
-    <?= $form->field($model, 'num_quartos')->textInput(['type' => 'number', 'value' => 0]) ?>
-
-    <?= $form->field($model, 'quarto_solteiro')->textInput(['type' => 'number', 'value' => 0]) ?>
+    <?= $form->field($model, 'quarto_solteiro')->textInput(['type' => 'number', 'value' => 0, 'min' => 0]) ?>
 
     <?= $form->field($model, 'quarto_casal')->textInput(['type' => 'number', 'value' => 0]) ?>
 

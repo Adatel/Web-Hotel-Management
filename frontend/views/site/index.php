@@ -14,7 +14,11 @@ $this->title = 'Adatel';
 
         <p>
             <?php
-                echo Html::a('Criar Reserva', ['/reserva/create'], ['class'=>'btn btn-info grid-button'])
+                if(Yii::$app->user->isGuest) {
+                    echo Html::a('Criar Reserva', ['/site/index'], ['class' => 'btn btn-info grid-button']);
+                } else {
+                    echo Html::a('Criar Reserva', ['/reserva/create'], ['class' => 'btn btn-info grid-button']);
+                }
             ?>
         </p>
 

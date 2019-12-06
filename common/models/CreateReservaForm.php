@@ -11,8 +11,10 @@ namespace common\models;
 
 use Yii;
 use yii\base\Model;
+use yii\web\View;
 
-class CreateReservaForm extends Model {
+class CreateReservaForm extends Model
+{
 
     public $data_entrada;
     public $data_saida;
@@ -41,8 +43,8 @@ class CreateReservaForm extends Model {
         ];
     }
 
-    public function reserva(){
-
+    public function reserva()
+    {
 
         $user = Yii::$app->user->id;
         //var_dump($user);
@@ -51,50 +53,93 @@ class CreateReservaForm extends Model {
         $reserva->data_entrada = $this->data_entrada;
         $reserva->data_saida = $this->data_saida;
         $reserva->num_pessoas = $this->num_pessoas;
-        $reserva->num_quartos = $this->num_quartos;
         $reserva->quarto_solteiro = $this->quarto_solteiro;
         $reserva->quarto_casal = $this->quarto_casal;
         $reserva->quarto_duplo = $this->quarto_duplo;
         $reserva->quarto_familia = $this->quarto_familia;
+        $count = $this->quarto_solteiro + $this->quarto_duplo + $this->quarto_familia + $this->quarto_casal;
+        $reserva->num_quartos = $count;
         $reserva->id_cliente = $user;
 
-        $count = $this->quarto_solteiro + $this->quarto_duplo + $this->quarto_familia + $this->quarto_casal;
 
-        if ($count != $this->num_quartos){
-            echo '<script type="text/javascript">';
-            echo ' alert("O número de quartos nao coincide com os quartos que selecionou!")';
-            echo '</script>';
+        $this->tipo1 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 1])->count();
+        $this->tipo2 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 2])->count();
+        $this->tipo3 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 3])->count();
+        $this->tipo4 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 4])->count();
+
+        if ($count < 1){
+            Yii::$app->session->setFlash('error', 'Insira pelo menos 1 quarto!');
         } else {
+            if ($this->tipo1 >= $this->quarto_solteiro && $this->tipo2 >= $this->quarto_casal && $this->tipo3 >= $this->quarto_duplo && $this->tipo4 >= $this->quarto_familia) {
+                $reserva->save();
 
-            $this->tipo1 = Quarto::find()
-                ->where(['estado' => 0, 'id_tipo' => 1])->count();
-            $this->tipo2 = Quarto::find()
-                ->where(['estado' => 0, 'id_tipo' => 2])->count();
-            $this->tipo3 = Quarto::find()
-                ->where(['estado' => 0, 'id_tipo' => 3])->count();
-            $this->tipo4 = Quarto::find()
-                ->where(['estado' => 0, 'id_tipo' => 4])->count();
+                $i = 1;
+                $j = 1;
+                $k = 1;
+                $l = 1;
 
-            var_dump($this->tipo1);
-            var_dump($this->tipo2);
-            var_dump($this->tipo3);
-            var_dump($this->tipo4);
-            die();
-            $this->tipo1 = 0;
-            $this->tipo2 = 0;
-            $this->tipo3 = 0;
-            $this->tipo4 = 0;
-            var_dump($this->tipo1);
-            die();
+                for ($i; $i <= $this->quarto_solteiro; $i++) {
+                    $quarto = Quarto::find()
+                        ->where(['id_tipo' => 1, 'estado' => 0])
+                        ->one();
+                    $reserva_quarto = new ReservaQuarto();
+                    $reserva_quarto->id_reserva = $reserva->id;
+                    $reserva_quarto->tipo_quarto = "Quarto de Solteiro";
+                    $reserva_quarto->id_quarto = $quarto->num_quarto;
+                    $quarto->estado = 1;
+                    $quarto->save();
+                    $reserva_quarto->save();
 
-            $reserva->save();
+                }
 
-            $reserva_quarto = new ReservaQuarto();
-            $reserva_quarto->id_reserva = $reserva->id;
-            $reserva_quarto->tipo_quarto = "Quarto Solteiro";//$this->tipo_quarto;
-            $reserva_quarto->id_quarto = 1;
-            $reserva_quarto->save();
+                for ($j; $j <= $this->quarto_casal; $j++) {
+                    $quarto2 = Quarto::find()
+                        ->where(['id_tipo' => 2, 'estado' => 0])
+                        ->one();
+                    $reserva_quarto = new ReservaQuarto();
+                    $reserva_quarto->id_reserva = $reserva->id;
+                    $reserva_quarto->tipo_quarto = "Quarto de Casal";
+                    $reserva_quarto->id_quarto = $quarto2->num_quarto;
+                    $quarto2->estado = 1;
+                    $quarto2->save();
+                    $reserva_quarto->save();
+                }
+
+                for ($k; $k <= $this->quarto_duplo; $k++) {
+                    $quarto3 = Quarto::find()
+                        ->where(['id_tipo' => 3, 'estado' => 0])
+                        ->one();
+                    $reserva_quarto = new ReservaQuarto();
+                    $reserva_quarto->id_reserva = $reserva->id;
+                    $reserva_quarto->tipo_quarto = "Quarto Duplo";
+                    $reserva_quarto->id_quarto = $quarto3->num_quarto;
+                    $quarto3->estado = 1;
+                    $quarto3->save();
+                    $reserva_quarto->save();
+                }
+
+                for ($l; $l <= $this->quarto_familia; $l++) {
+                    $quarto4 = Quarto::find()
+                        ->where(['id_tipo' => 4, 'estado' => 0])
+                        ->one();
+                    $reserva_quarto = new ReservaQuarto();
+                    $reserva_quarto->id_reserva = $reserva->id;
+                    $reserva_quarto->tipo_quarto = "Quarto de Família";
+                    $reserva_quarto->id_quarto = $quarto4->num_quarto;
+                    $quarto4->estado = 1;
+                    $quarto4->save();
+                    $reserva_quarto->save();
+                }
+
+                Yii::$app->session->setFlash('success', 'A Reserva foi criada com sucesso!!');
+
+            } else {
+                Yii::$app->session->setFlash('error', 'Não foi possível fazer reserva, devido à falta de quartos disponiveis!');
+            }
         }
     }
-
 }

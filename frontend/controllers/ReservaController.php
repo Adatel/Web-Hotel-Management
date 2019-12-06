@@ -68,7 +68,8 @@ class ReservaController extends Controller
         $model = new CreateReservaForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->reserva()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('success', 'A sua reserva foi criada com sucesso!');
+            return $this->actionIndex();
         }
 
         return $this->render('create', [
