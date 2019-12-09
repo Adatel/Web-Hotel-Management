@@ -1,6 +1,6 @@
 <?php
 
-namespace common;
+namespace frontend\controllers;
 
 use Yii;
 use common\models\Quarto;

@@ -43,7 +43,7 @@ class CreateReservaForm extends Model
         ];
     }
 
-    public function reserva()
+    public function criarReserva()
     {
 
         $user = Yii::$app->user->id;

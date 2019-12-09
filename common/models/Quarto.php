@@ -64,4 +64,8 @@ class Quarto extends \yii\db\ActiveRecord
     {
         return $this->hasMany(ReservaQuarto::className(), ['id_quarto' => 'num_quarto']);
     }
+
+    public function criarQuarto(){
+
+    }
 }

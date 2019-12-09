@@ -37,12 +37,19 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Quartos', 'url' => ['/quarto/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        $menuItems = [
+            ['label' => 'Quartos', 'url' => ['/quarto/index']],
+            ['label' => 'Reservas', 'url' => ['/reserva/index']],
+            ['label' => 'Pedidos', 'url' => ['/pedido/index']],
+            ['label' => 'Clientes', 'url' => ['/profile/index']],
+            ['label' => 'Funcionários', 'url' => ['/profile/index']],
+        ];
+        $menuItems[] =
+            '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
