@@ -11,7 +11,6 @@ $this->title ="Adatel";
     </div>
 
     <div class="body-content">
-
         <div class="row">
             <div class="col-lg-4">
                 <p>Informação sobre o website?</p>
