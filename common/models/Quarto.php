@@ -66,6 +66,15 @@ class Quarto extends \yii\db\ActiveRecord
     }
 
     public function criarQuarto(){
+        $quarto = new Quarto();
+        $quarto->num_quarto = $this->num_quarto;
+        $quarto->id_tipo = $this->id_tipo;
+        $quarto->estado = $this->estado;
+
+
+
+        $quarto->save();
+
 
     }
 }
