@@ -42,11 +42,13 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems = [
-            ['label' => 'Funcionários', 'url' => ['/profile/index']],
-            ['label' => 'Clientes', 'url' => ['/profile/index']],
+            ['label' => 'Funcionários', 'url' => ['/profile/funcionarios']],
+            ['label' => 'Clientes', 'url' => ['/profile/clientes']],
             ['label' => 'Quartos', 'url' => ['/quarto/index']],
             ['label' => 'Reservas', 'url' => ['/reserva/index']],
             ['label' => 'Pedidos', 'url' => ['/pedido/index']],
+            ['label' => 'Produtos', 'url' => ['/produto/index']],
+            ['label' => 'Tipos de Produto', 'url' => ['/tipo_produto/index']],
         ];
         $menuItems[] =
             '<li>'

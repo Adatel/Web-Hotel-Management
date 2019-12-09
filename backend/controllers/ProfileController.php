@@ -33,13 +33,24 @@ class ProfileController extends Controller
      * Lists all Profile models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionFuncionarios()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Profile::find(),
+            'query' => Profile::find()->where('is_funcionario' == 1),
         ]);
 
-        return $this->render('index', [
+        return $this->render('funcionarios', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionClientes()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Profile::find()->Where('is_cliente' == 1),
+        ]);
+
+        return $this->render('clientes', [
             'dataProvider' => $dataProvider,
         ]);
     }

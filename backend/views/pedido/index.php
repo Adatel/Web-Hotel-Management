@@ -14,20 +14,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Pedido', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Criar Pedido', ['create'], ['class' => 'btn btn-info']) ?>
     </p>
 
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'data_hora',
             'custo',
             'id_reservaquarto',
-            'id_funcionario',
+            //'id_funcionario',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
