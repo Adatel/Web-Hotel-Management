@@ -23,14 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-
             'num_quarto',
             //'id_tipo',
-            [
-                    //para active data provider
-                'attribute' => 'Designação',
-                'value'=>'tipo.designacao'
-            ],
+            'tipo.designacao',
             'estado',
 
             ['class' => 'yii\grid\ActionColumn'],

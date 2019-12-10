@@ -7,6 +7,7 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model common\models\Reserva */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="reserva-form">
@@ -29,6 +30,8 @@ use kartik\date\DatePicker;
     ]); ?>
 
     <?= $form->field($model, 'num_pessoas')->textInput(['type' => 'number', 'value' => 1, 'min' => 1]) ?>
+
+    <?php // $form->field($model , 'quarto_solteiro')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\TipoQuarto::find()->all(), 'id', 'designacao'),['class' => 'form-control inline-block']) ?>
 
     <?= $form->field($model, 'quarto_solteiro')->textInput(['type' => 'number', 'value' => 0, 'min' => 0]) ?>
 
