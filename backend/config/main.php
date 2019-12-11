@@ -51,7 +51,7 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['api/users', 'api/reservas'],
+                    'controller' => ['api/users', 'api/reservas', 'api/reservaquartos', 'api/pedidos'],
                     'pluralize' => false,
                 ],
             ],
