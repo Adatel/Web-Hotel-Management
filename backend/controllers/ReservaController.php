@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ReservaController implements the CRUD actions for Reserva model.
+ * ReservasController implements the CRUD actions for Reserva model.
  */
 class ReservaController extends Controller
 {

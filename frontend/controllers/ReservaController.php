@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ReservaController implements the CRUD actions for Reserva model.
+ * ReservasController implements the CRUD actions for Reserva model.
  */
 class ReservaController extends Controller
 {
@@ -67,7 +67,7 @@ class ReservaController extends Controller
     {
         $model = new CreateReservaForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->reserva()) {
+        if ($model->load(Yii::$app->request->post()) && $model->criarReserva()) {
             Yii::$app->session->setFlash('success', 'A sua reserva foi criada com sucesso!');
             return $this->actionIndex();
         }
