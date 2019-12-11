@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'tipo.designacao',
             //'id_tipo',
             'estado',
-
         ],
     ]) ?>
 
