@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'tipo_quarto')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'id_reserva')->textInput() ?>
 
     <?= $form->field($model, 'id_quarto')->textInput() ?>

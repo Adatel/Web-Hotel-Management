@@ -9,7 +9,6 @@ use Yii;
  * This is the model class for table "reserva_quarto".
  *
  * @property int $id
- * @property string $tipo_quarto
  * @property int $id_reserva
  * @property int $id_quarto
  *
@@ -33,9 +32,8 @@ class ReservaQuarto extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tipo_quarto', 'id_reserva', 'id_quarto'], 'required'],
+            [['id_reserva', 'id_quarto'], 'required'],
             [['id_reserva', 'id_quarto'], 'integer'],
-            [['tipo_quarto'], 'string', 'max' => 50],
             [['id_reserva'], 'exist', 'skipOnError' => true, 'targetClass' => Reserva::className(), 'targetAttribute' => ['id_reserva' => 'id']],
             [['id_quarto'], 'exist', 'skipOnError' => true, 'targetClass' => Quarto::className(), 'targetAttribute' => ['id_quarto' => 'num_quarto']],
         ];
@@ -48,7 +46,6 @@ class ReservaQuarto extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'tipo_quarto' => 'Tipo de Quarto',
             'id_reserva' => 'Id Reserva',
             'id_quarto' => 'Id Quarto',
         ];
