@@ -71,10 +71,7 @@ class Quarto extends \yii\db\ActiveRecord
         $quarto->id_tipo = $this->id_tipo;
         $quarto->estado = $this->estado;
 
-
-
         $quarto->save();
-
 
     }
 }

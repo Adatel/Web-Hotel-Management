@@ -48,7 +48,6 @@ AppAsset::register($this);
             ['label' => 'Reservas', 'url' => ['/reserva/index']],
             ['label' => 'Pedidos', 'url' => ['/pedido/index']],
             ['label' => 'Produtos', 'url' => ['/produto/index']],
-            ['label' => 'Tipos de Produto', 'url' => ['/tipo_produto/index']],
         ];
         $menuItems[] =
             '<li>'
