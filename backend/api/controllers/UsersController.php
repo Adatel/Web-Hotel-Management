@@ -13,7 +13,7 @@ class UsersController extends ActiveController
 {
     public $modelClass = 'common\models\User';
 
-  /*  public function behaviors()
+    public function behaviors()
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
@@ -31,7 +31,7 @@ class UsersController extends ActiveController
             return $user;
         } return null;
     }
-*/
+
     public function actionSignup(){
 
         $model = new SignupForm();

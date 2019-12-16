@@ -9,6 +9,7 @@
 namespace common\models;
 
 
+use Carbon\Carbon;
 use Yii;
 use yii\base\Model;
 use yii\web\View;
@@ -61,6 +62,14 @@ class CreateReservaForm extends Model
         $reserva->num_quartos = $count;
         $reserva->id_cliente = $user;
 
+        $dataAtual = Carbon::create(Carbon::now()->subDays(2));
+
+        // diff
+
+        echo $dataAtual->subDays(2);
+        echo '<br>';
+        echo $this->data_entrada;
+        die();
 
         $this->tipo1 = Quarto::find()
             ->where(['estado' => 0, 'id_tipo' => 1])->count();
@@ -71,75 +80,74 @@ class CreateReservaForm extends Model
         $this->tipo4 = Quarto::find()
             ->where(['estado' => 0, 'id_tipo' => 4])->count();
 
-        if ($count < 1){
-            Yii::$app->session->setFlash('error', 'Insira pelo menos 1 quarto!');
-        } else {
-            if ($this->tipo1 >= $this->quarto_solteiro && $this->tipo2 >= $this->quarto_casal && $this->tipo3 >= $this->quarto_duplo && $this->tipo4 >= $this->quarto_familia) {
-                $reserva->save();
 
-                $i = 1;
-                $j = 1;
-                $k = 1;
-                $l = 1;
-
-                for ($i; $i <= $this->quarto_solteiro; $i++) {
-                    $quarto = Quarto::find()
-                        ->where(['id_tipo' => 1, 'estado' => 0])
-                        ->one();
-                    $reserva_quarto = new ReservaQuarto();
-                    $reserva_quarto->id_reserva = $reserva->id;
-                    $reserva_quarto->tipo_quarto = "Quarto de Solteiro";
-                    $reserva_quarto->id_quarto = $quarto->num_quarto;
-                    $quarto->estado = 1;
-                    $quarto->save();
-                    $reserva_quarto->save();
-
-                }
-
-                for ($j; $j <= $this->quarto_casal; $j++) {
-                    $quarto2 = Quarto::find()
-                        ->where(['id_tipo' => 2, 'estado' => 0])
-                        ->one();
-                    $reserva_quarto = new ReservaQuarto();
-                    $reserva_quarto->id_reserva = $reserva->id;
-                    $reserva_quarto->tipo_quarto = "Quarto de Casal";
-                    $reserva_quarto->id_quarto = $quarto2->num_quarto;
-                    $quarto2->estado = 1;
-                    $quarto2->save();
-                    $reserva_quarto->save();
-                }
-
-                for ($k; $k <= $this->quarto_duplo; $k++) {
-                    $quarto3 = Quarto::find()
-                        ->where(['id_tipo' => 3, 'estado' => 0])
-                        ->one();
-                    $reserva_quarto = new ReservaQuarto();
-                    $reserva_quarto->id_reserva = $reserva->id;
-                    $reserva_quarto->tipo_quarto = "Quarto Duplo";
-                    $reserva_quarto->id_quarto = $quarto3->num_quarto;
-                    $quarto3->estado = 1;
-                    $quarto3->save();
-                    $reserva_quarto->save();
-                }
-
-                for ($l; $l <= $this->quarto_familia; $l++) {
-                    $quarto4 = Quarto::find()
-                        ->where(['id_tipo' => 4, 'estado' => 0])
-                        ->one();
-                    $reserva_quarto = new ReservaQuarto();
-                    $reserva_quarto->id_reserva = $reserva->id;
-                    $reserva_quarto->tipo_quarto = "Quarto de Família";
-                    $reserva_quarto->id_quarto = $quarto4->num_quarto;
-                    $quarto4->estado = 1;
-                    $quarto4->save();
-                    $reserva_quarto->save();
-                }
-
-                Yii::$app->session->setFlash('success', 'A Reserva foi criada com sucesso!!');
-
+        if ($dataAtual <= $dt && $this->data_entrada < $this->data_saida) {
+            if ($count < 1) {
+                Yii::$app->session->setFlash('error', 'Insira pelo menos 1 quarto!');
             } else {
-                Yii::$app->session->setFlash('error', 'Não foi possível fazer reserva, devido à falta de quartos disponiveis!');
+                if ($this->tipo1 >= $this->quarto_solteiro && $this->tipo2 >= $this->quarto_casal && $this->tipo3 >= $this->quarto_duplo && $this->tipo4 >= $this->quarto_familia) {
+                    $reserva->save();
+
+                    for ($i = 1; $i <= $this->quarto_solteiro; $i++) {
+                        $quarto = Quarto::find()
+                            ->where(['id_tipo' => 1, 'estado' => 0])
+                            ->one();
+                        $reserva_quarto = new ReservaQuarto();
+                        $reserva_quarto->id_reserva = $reserva->id;
+                        $reserva_quarto->tipo_quarto = "Quarto de Solteiro";
+                        $reserva_quarto->id_quarto = $quarto->num_quarto;
+                        $quarto->estado = 1;
+                        $quarto->save();
+                        $reserva_quarto->save();
+                    }
+
+                    for ($j = 1; $j <= $this->quarto_casal; $j++) {
+                        $quarto2 = Quarto::find()
+                            ->where(['id_tipo' => 2, 'estado' => 0])
+                            ->one();
+                        $reserva_quarto = new ReservaQuarto();
+                        $reserva_quarto->id_reserva = $reserva->id;
+                        $reserva_quarto->tipo_quarto = "Quarto de Casal";
+                        $reserva_quarto->id_quarto = $quarto2->num_quarto;
+                        $quarto2->estado = 1;
+                        $quarto2->save();
+                        $reserva_quarto->save();
+                    }
+
+                    for ($k = 1; $k <= $this->quarto_duplo; $k++) {
+                        $quarto3 = Quarto::find()
+                            ->where(['id_tipo' => 3, 'estado' => 0])
+                            ->one();
+                        $reserva_quarto = new ReservaQuarto();
+                        $reserva_quarto->id_reserva = $reserva->id;
+                        $reserva_quarto->tipo_quarto = "Quarto Duplo";
+                        $reserva_quarto->id_quarto = $quarto3->num_quarto;
+                        $quarto3->estado = 1;
+                        $quarto3->save();
+                        $reserva_quarto->save();
+                    }
+
+                    for ($l = 1; $l <= $this->quarto_familia; $l++) {
+                        $quarto4 = Quarto::find()
+                            ->where(['id_tipo' => 4, 'estado' => 0])
+                            ->one();
+                        $reserva_quarto = new ReservaQuarto();
+                        $reserva_quarto->id_reserva = $reserva->id;
+                        $reserva_quarto->tipo_quarto = "Quarto de Família";
+                        $reserva_quarto->id_quarto = $quarto4->num_quarto;
+                        $quarto4->estado = 1;
+                        $quarto4->save();
+                        $reserva_quarto->save();
+                    }
+
+                    Yii::$app->session->setFlash('success', 'A Reserva foi criada com sucesso!!');
+                } else {
+                    Yii::$app->session->setFlash('error', 'Não foi possível fazer reserva, devido à falta de quartos disponiveis!');
+                }
             }
+        } else {
+            Yii::$app->session->setFlash('error', 'Verifique as datas de reserva. Só é possivel fazer reserva com 2 dias de antecedência!');
         }
     }
 }
+

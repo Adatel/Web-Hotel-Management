@@ -11,7 +11,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reserva-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
+    <br>
 
     <p>
         <?= Html::a('Criar Reserva', ['create'], ['class' => 'btn btn-info']) ?>

@@ -12,7 +12,7 @@ $this->title = 'Contactos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
 
     <p>
         Em caso de alguma pergunta, por favor preencha o formulário em baixo. Obrigado.

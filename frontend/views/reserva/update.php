@@ -12,7 +12,8 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="reserva-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2><?= Html::encode($this->title) ?></h2>
+    <br>
 
     <?= $this->render('_form', [
         'model' => $model,

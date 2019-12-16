@@ -36,8 +36,12 @@ class ReservaController extends Controller
      */
     public function actionIndex()
     {
+
+        $id_user = Yii::$app->user->id;
+        //var_dump($id_user);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Reserva::find(),
+            'query' => Reserva::find()->where(['id_cliente' => $id_user]),
         ]);
 
         return $this->render('index', [
