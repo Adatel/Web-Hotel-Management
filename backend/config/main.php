@@ -51,12 +51,20 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => ['api/users', 'api/reservas', 'api/reservaquartos', 'api/pedidos'],
                     'pluralize' => false,
+                    'controller' => [
+                        'api/users',
+                        'api/reservas',
+                        'api/reservaquartos',
+                        'api/pedidos'
+                    ],
+                    'extraPatterns' => [
+                        'POST signup' => 'signup',
+                        'GET total' => 'total',
+                    ],
                 ],
             ],
         ],
-
     ],
     'params' => $params,
 ];

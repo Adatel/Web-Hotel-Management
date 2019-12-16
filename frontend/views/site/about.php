@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="section-title">
                             <h2>Informações do <br>Hotel</h2>
                         </div>
+                        <br><br>
                         <p>O hotel fornece uma estadia excelente, com inúmeros quartos, serviços de quarto de topo, e refeições classificadas como 5 estrelas.
                             Construido em 1890 e comprado por uma empresa inovadora, o hotel Adatel oferece uma das melhores experências do mercado.</p>
                     </div>

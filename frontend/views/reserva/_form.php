@@ -42,7 +42,7 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'quarto_familia')->textInput(['type' => 'number', 'value' => 0]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Criar Reserva', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Criar Reserva', ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

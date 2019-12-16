@@ -57,45 +57,26 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        /*var_dump($this->nome);
-        die();*/
-        /*if (!$this->validate()) {
-            return null;
-        }*/
+        $user = new User();
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->save();
 
-            $user = new User();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
-            $user->save(false);
-            $user->generateEmailVerificationToken();
-            $user->save();
+        $profile = new Profile();
+        $profile->nome = $this->nome;
+        $profile->nif = $this->nif;
+        $profile->telemovel = $this->telemovel;
+        $profile->morada = $this->morada;
+        $profile->is_admin = 0;
+        $profile->is_funcionario = 0;
+        $profile->is_cliente = 1;
+        $profile->id_user = $user->id;
+        $profile->save();
 
-            $profile = new Profile();
-            $profile->nome = $this->nome;
-            $profile->nif = $this->nif;
-            $profile->telemovel = $this->telemovel;
-            $profile->morada = $this->morada;
-            $profile->is_admin = 0;
-            $profile->is_funcionario = 0;
-            $profile->is_cliente = 1;
-            $profile->id_user = $user->id;
-            $profile->save(false);
-            $profile->save();
-
-            // the following three lines were added:
-           /* $auth = \Yii::$app->authManager;
-            $authorRole = $auth->getRole('author');
-            $auth->assign($authorRole, $user->getId());
-*/
-            //return $user;
-       // var_dump($user);
-        //die();
-         return $this->sendEmail($user);
-        //}
-
-        //return null;
+        return $this->sendEmail($user);
     }
 
     /**
