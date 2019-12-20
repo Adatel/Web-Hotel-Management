@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use app\models\Pedido;
+use backend\models\Pedido;
 use Yii;
 
 /**

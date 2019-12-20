@@ -3,6 +3,8 @@
 namespace frontend\controllers;
 
 use common\models\CreateReservaForm;
+use common\models\Quarto;
+use common\models\ReservaQuarto;
 use Yii;
 use common\models\Reserva;
 use yii\data\ActiveDataProvider;
@@ -110,6 +112,22 @@ class ReservaController extends Controller
      */
     public function actionDelete($id)
     {
+        $reservas_quartos = ReservaQuarto::find()
+            ->where(['id_reserva' => $id])
+            ->all();
+
+        foreach ($reservas_quartos as $reserva_quarto){
+
+            $quarto = Quarto::find()
+                ->where([ 'num_quarto' => $reserva_quarto->id_quarto])
+                ->one();
+
+            $quarto->estado = 0 ;
+            $quarto->save();
+
+            $reserva_quarto->delete();
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

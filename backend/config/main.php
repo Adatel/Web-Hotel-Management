@@ -51,13 +51,13 @@ return [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'pluralize' => false,
                     'controller' => [
                         'api/users',
                         'api/reservas',
                         'api/reservaquartos',
                         'api/pedidos'
                     ],
+                    'pluralize' => false,
                     'extraPatterns' => [
                         'POST signup' => 'signup',
                         'GET total' => 'total',

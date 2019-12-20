@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'quarto_duplo',
             'quarto_familia',
             'quarto_casal',
-            'id_cliente',
+            //'id_cliente',
         ],
     ]) ?>
 

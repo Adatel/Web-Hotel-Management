@@ -62,15 +62,6 @@ class CreateReservaForm extends Model
         $reserva->num_quartos = $count;
         $reserva->id_cliente = $user;
 
-        $dataAtual = Carbon::create(Carbon::now()->subDays(2));
-
-        // diff
-
-        echo $dataAtual->subDays(2);
-        echo '<br>';
-        echo $this->data_entrada;
-        die();
-
         $this->tipo1 = Quarto::find()
             ->where(['estado' => 0, 'id_tipo' => 1])->count();
         $this->tipo2 = Quarto::find()
@@ -81,7 +72,7 @@ class CreateReservaForm extends Model
             ->where(['estado' => 0, 'id_tipo' => 4])->count();
 
 
-        if ($dataAtual <= $dt && $this->data_entrada < $this->data_saida) {
+        if ($this->data_entrada < $this->data_saida) {
             if ($count < 1) {
                 Yii::$app->session->setFlash('error', 'Insira pelo menos 1 quarto!');
             } else {
@@ -94,7 +85,6 @@ class CreateReservaForm extends Model
                             ->one();
                         $reserva_quarto = new ReservaQuarto();
                         $reserva_quarto->id_reserva = $reserva->id;
-                        $reserva_quarto->tipo_quarto = "Quarto de Solteiro";
                         $reserva_quarto->id_quarto = $quarto->num_quarto;
                         $quarto->estado = 1;
                         $quarto->save();
@@ -107,7 +97,6 @@ class CreateReservaForm extends Model
                             ->one();
                         $reserva_quarto = new ReservaQuarto();
                         $reserva_quarto->id_reserva = $reserva->id;
-                        $reserva_quarto->tipo_quarto = "Quarto de Casal";
                         $reserva_quarto->id_quarto = $quarto2->num_quarto;
                         $quarto2->estado = 1;
                         $quarto2->save();
@@ -120,7 +109,6 @@ class CreateReservaForm extends Model
                             ->one();
                         $reserva_quarto = new ReservaQuarto();
                         $reserva_quarto->id_reserva = $reserva->id;
-                        $reserva_quarto->tipo_quarto = "Quarto Duplo";
                         $reserva_quarto->id_quarto = $quarto3->num_quarto;
                         $quarto3->estado = 1;
                         $quarto3->save();
@@ -133,7 +121,6 @@ class CreateReservaForm extends Model
                             ->one();
                         $reserva_quarto = new ReservaQuarto();
                         $reserva_quarto->id_reserva = $reserva->id;
-                        $reserva_quarto->tipo_quarto = "Quarto de Família";
                         $reserva_quarto->id_quarto = $quarto4->num_quarto;
                         $quarto4->estado = 1;
                         $quarto4->save();
