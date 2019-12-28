@@ -1,18 +1,18 @@
 <?php
 
-namespace frontend\controllers;
+namespace backend\controllers;
 
 use Yii;
-use common\models\ReservaQuarto;
+use common\models\TipoQuarto;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ReservaQuartoController implements the CRUD actions for ReservaQuarto model.
+ * TipoquartoController implements the CRUD actions for TipoQuarto model.
  */
-class ReservaQuartoController extends Controller
+class TipoquartoController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,13 +30,13 @@ class ReservaQuartoController extends Controller
     }
 
     /**
-     * Lists all ReservaQuarto models.
+     * Lists all TipoQuarto models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => ReservaQuarto::find(),
+            'query' => TipoQuarto::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class ReservaQuartoController extends Controller
     }
 
     /**
-     * Displays a single ReservaQuarto model.
+     * Displays a single TipoQuarto model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class ReservaQuartoController extends Controller
     }
 
     /**
-     * Creates a new ReservaQuarto model.
+     * Creates a new TipoQuarto model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ReservaQuarto();
+        $model = new TipoQuarto();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class ReservaQuartoController extends Controller
     }
 
     /**
-     * Updates an existing ReservaQuarto model.
+     * Updates an existing TipoQuarto model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class ReservaQuartoController extends Controller
     }
 
     /**
-     * Deletes an existing ReservaQuarto model.
+     * Deletes an existing TipoQuarto model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class ReservaQuartoController extends Controller
     }
 
     /**
-     * Finds the ReservaQuarto model based on its primary key value.
+     * Finds the TipoQuarto model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ReservaQuarto the loaded model
+     * @return TipoQuarto the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ReservaQuarto::findOne($id)) !== null) {
+        if (($model = TipoQuarto::findOne($id)) !== null) {
             return $model;
         }
 

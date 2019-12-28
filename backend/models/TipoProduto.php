@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "tipo_produto".
+ * This is the model class for table "tipoproduto".
  *
  * @property int $id
  * @property string $descricao_tipo
@@ -19,7 +19,7 @@ class TipoProduto extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tipo_produto';
+        return 'tipoproduto';
     }
 
     /**
@@ -40,7 +40,7 @@ class TipoProduto extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'descricao_tipo' => 'Descricao Tipo',
+            'descricao_tipo' => 'Tipo',
         ];
     }
 

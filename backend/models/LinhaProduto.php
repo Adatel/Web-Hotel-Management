@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use backend\models\Pedido;
 use Yii;
 
 /**

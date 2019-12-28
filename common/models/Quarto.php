@@ -43,7 +43,7 @@ class Quarto extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'num_quarto' => 'Num Quarto',
+            'num_quarto' => 'Número do Quarto',
             'id_tipo' => 'Id Tipo',
             'estado' => 'Estado',
         ];

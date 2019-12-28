@@ -25,7 +25,6 @@ class CreateReservaForm extends Model
     public $quarto_duplo;
     public $quarto_familia;
     public $quarto_casal;
-    public $tipo_quarto;
 
     public $tipo1 = 0, $tipo2 = 0, $tipo3 = 0, $tipo4 = 0;
 
@@ -38,9 +37,8 @@ class CreateReservaForm extends Model
             [['num_pessoas', 'num_quartos', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'id_cliente'], 'integer'],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
 
-            [['tipo_quarto', 'id_quarto'], 'required'],
+            [['id_quarto'], 'required'],
             [['id_reserva'], 'integer'],
-            [['tipo_quarto'], 'string', 'max' => 50],
         ];
     }
 

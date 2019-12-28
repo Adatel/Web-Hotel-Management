@@ -28,6 +28,7 @@ use Yii;
  */
 class Reserva extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
@@ -45,6 +46,7 @@ class Reserva extends \yii\db\ActiveRecord
             [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'id_cliente'], 'required'],
             [['data_entrada', 'data_saida'], 'safe'],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
+
         ];
     }
 
@@ -55,8 +57,8 @@ class Reserva extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'data_entrada' => 'Data Entrada',
-            'data_saida' => 'Data Saida',
+            'data_entrada' => 'Data de Entrada',
+            'data_saida' => 'Data de Saida',
             'num_pessoas' => 'Número de Pessoas',
             'num_quartos' => 'Número de Quartos',
             'quarto_solteiro' => 'Quarto de Solteiro',
@@ -66,6 +68,7 @@ class Reserva extends \yii\db\ActiveRecord
             'id_cliente' => 'Id Cliente',
         ];
     }
+
 
     /**
      * @return \yii\db\ActiveQuery

@@ -42,8 +42,8 @@ class TipoQuarto extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'designacao' => 'Designacao',
-            'preco_noite' => 'Preco Noite',
+            'designacao' => 'Designação',
+            'preco_noite' => 'Preço por Noite',
         ];
     }
 

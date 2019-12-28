@@ -46,8 +46,8 @@ class Produto extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'designacao' => 'Designacao',
-            'preco_unitario' => 'Preco Unitario',
+            'designacao' => 'Designação',
+            'preco_unitario' => 'Preço Unitário',
             'id_tipo' => 'Id Tipo',
         ];
     }

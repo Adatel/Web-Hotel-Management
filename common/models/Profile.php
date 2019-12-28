@@ -2,7 +2,7 @@
 
 namespace common\models;
 
-use app\models\Pedido;
+use backend\models\Pedido;
 use Yii;
 
 /**
@@ -54,7 +54,7 @@ class Profile extends \yii\db\ActiveRecord
         return [
             'nome' => 'Nome',
             'nif' => 'Nif',
-            'telemovel' => 'Telemovel',
+            'telemovel' => 'Telemóvel',
             'morada' => 'Morada',
             'is_admin' => 'Is Admin',
             'is_funcionario' => 'Is Funcionario',

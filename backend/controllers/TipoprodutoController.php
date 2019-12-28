@@ -10,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TipoProdutoController implements the CRUD actions for TipoProduto model.
+ * TipoprodutoController implements the CRUD actions for TipoProduto model.
  */
-class TipoProdutoController extends Controller
+class TipoprodutoController extends Controller
 {
     /**
      * {@inheritdoc}

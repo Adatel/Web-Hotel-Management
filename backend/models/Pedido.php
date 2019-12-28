@@ -2,7 +2,9 @@
 
 namespace backend\models;
 
+use app\models\LinhaProduto;
 use common\models\Profile;
+use common\models\ReservaQuarto;
 use Yii;
 
 /**
@@ -34,12 +36,11 @@ class Pedido extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_hora', 'custo', 'id_reservaquarto', 'id_funcionario'], 'required'],
+            [['data_hora', 'custo', 'id_reservaquarto'], 'required'],
             [['data_hora'], 'safe'],
             [['custo'], 'number'],
-            [['id_reservaquarto', 'id_funcionario'], 'integer'],
+            [['id_reservaquarto'], 'integer'],
             [['id_reservaquarto'], 'exist', 'skipOnError' => true, 'targetClass' => ReservaQuarto::className(), 'targetAttribute' => ['id_reservaquarto' => 'id']],
-            [['id_funcionario'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_funcionario' => 'id_user']],
         ];
     }
 
@@ -50,10 +51,9 @@ class Pedido extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'data_hora' => 'Data Hora',
+            'data_hora' => 'Data e Hora',
             'custo' => 'Custo',
-            'id_reservaquarto' => 'Id Reservaquarto',
-            'id_funcionario' => 'Id Funcionario',
+            'id_reservaquarto' => 'Id ReservaQuarto',
         ];
     }
 

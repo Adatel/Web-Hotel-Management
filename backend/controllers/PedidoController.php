@@ -2,8 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\Pedido;
 use Yii;
-use app\models\Pedido;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
