@@ -42,8 +42,8 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems = [
-            ['label' => 'Funcionários', 'url' => ['/profile/funcionarios']],
-            ['label' => 'Clientes', 'url' => ['/profile/clientes']],
+            ['label' => 'Funcionários', 'url' => ['/profile/funcionario']],
+            ['label' => 'Clientes', 'url' => ['/profile/cliente']],
             ['label' => 'Quartos', 'url' => ['/quarto/index']],
             ['label' => 'Reservas', 'url' => ['/reserva/index']],
             ['label' => 'Pedidos', 'url' => ['/pedido/index']],

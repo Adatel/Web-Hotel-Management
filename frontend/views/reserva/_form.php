@@ -31,8 +31,6 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'num_pessoas')->textInput(['type' => 'number', 'value' => 1, 'min' => 1]) ?>
 
-    <?php // $form->field($model , 'quarto_solteiro')->dropDownList(\yii\helpers\ArrayHelper::map(\common\models\TipoQuarto::find()->all(), 'id', 'designacao'),['class' => 'form-control inline-block']) ?>
-
     <?= $form->field($model, 'quarto_solteiro')->textInput(['type' => 'number', 'value' => 0, 'min' => 0]) ?>
 
     <?= $form->field($model, 'quarto_casal')->textInput(['type' => 'number', 'value' => 0]) ?>
@@ -42,7 +40,7 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'quarto_familia')->textInput(['type' => 'number', 'value' => 0]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Criar Reserva', ['class' => 'btn btn-info']) ?>
+        <?= Html::submitButton('Alterar Reserva', ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

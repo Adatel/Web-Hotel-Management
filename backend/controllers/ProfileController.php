@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Profile;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +21,23 @@ class ProfileController extends Controller
     public function behaviors()
     {
         return [
+
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['cliente', 'funcionario', 'view', 'create', 'update', 'delete'],
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'actions' => ['cliente', 'funcionario', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -33,24 +51,28 @@ class ProfileController extends Controller
      * Lists all Profile models.
      * @return mixed
      */
-    public function actionFuncionarios()
+    public function actionFuncionario()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Profile::find()->where('is_funcionario' == 1),
+            'query' => Profile::find()
+                ->where(['is_funcionario' => 1])
+                ->all(),
         ]);
 
-        return $this->render('funcionarios', [
+        return $this->render('funcionario', [
             'dataProvider' => $dataProvider,
         ]);
     }
 
-    public function actionClientes()
+    public function actionCliente()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Profile::find()->Where('is_cliente' == 1),
+            'query' => Profile::find()
+                ->Where(['is_cliente' => 1])
+                ->all(),
         ]);
 
-        return $this->render('clientes', [
+        return $this->render('cliente', [
             'dataProvider' => $dataProvider,
         ]);
     }
