@@ -14,7 +14,7 @@ use Yii;
 use yii\base\Model;
 use yii\web\View;
 
-class CreateReservaForm extends Model
+class ReservaForm extends Model
 {
 
     public $data_entrada;
@@ -131,7 +131,48 @@ class CreateReservaForm extends Model
                 }
             }
         } else {
-            Yii::$app->session->setFlash('error', 'Verifique as datas de reserva. Só é possivel fazer reserva com 2 dias de antecedência!');
+            Yii::$app->session->setFlash('error', 'Verifique as datas de reserva. Só é possivel fazer reserva até 2 dias de antecedência!');
+        }
+    }
+
+    public function alterarReserva($model){
+
+        var_dump($model);
+        die();
+
+        $count = $this->quarto_solteiro + $this->quarto_duplo + $this->quarto_familia + $this->quarto_casal;
+
+        $this->tipo1 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 1])->count();
+        $this->tipo2 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 2])->count();
+        $this->tipo3 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 3])->count();
+        $this->tipo4 = Quarto::find()
+            ->where(['estado' => 0, 'id_tipo' => 4])->count();
+
+        // Verifica se as datas são aceitáveis
+        if($this->data_entrada < $this->data_saida){
+
+            // Verifica se o cliente está a reservar pelo menos 1 quarto
+            if ($count < 1) {
+                Yii::$app->session->setFlash('error', 'Insira pelo menos 1 quarto!');
+            } else {
+
+                // Verifica se existe quartos livres correspondentes ao que o cliente pede
+                if ($this->tipo1 >= $this->quarto_solteiro && $this->tipo2 >= $this->quarto_casal && $this->tipo3 >= $this->quarto_duplo && $this->tipo4 >= $this->quarto_familia) {
+
+
+
+                    Yii::$app->session->setFlash('success', 'A Reserva foi alterada com sucesso!!');
+                } else {
+                    Yii::$app->session->setFlash('error', 'Não foi possível fazer reserva, devido à falta de quartos disponiveis!');
+                }
+
+            }
+
+        } else {
+            Yii::$app->session->setFlash('error', 'Verifique as datas de reserva. Só é possivel fazer reserva até 2 dias de antecedência!');
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\models\CreateReservaForm;
+use common\models\ReservaForm;
 use common\models\Quarto;
 use common\models\ReservaQuarto;
 use Yii;
@@ -89,7 +89,7 @@ class ReservaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new CreateReservaForm();
+        $model = new ReservaForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->criarReserva()) {
             Yii::$app->session->setFlash('success', 'A sua reserva foi criada com sucesso!');
@@ -110,15 +110,26 @@ class ReservaController extends Controller
      */
     public function actionUpdate($id)
     {
+        //$model = new ReservaForm();
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post()) && $model->alterarReserva($model)){
+            Yii::$app->session->setFlash('success', 'A sua reserva foi alterada com sucesso!');
             return $this->redirect(['view', 'id' => $model->id]);
         }
+
+        /*
+            $model = $this->findModel($id);
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        */
 
         return $this->render('update', [
             'model' => $model,
         ]);
+
     }
 
     /**
