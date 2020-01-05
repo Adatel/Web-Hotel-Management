@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\SignupForm;
 use Yii;
 use common\models\Profile;
 use yii\data\ActiveDataProvider;
@@ -53,10 +54,11 @@ class ProfileController extends Controller
      */
     public function actionFuncionario()
     {
+        $i = 1;
+
         $dataProvider = new ActiveDataProvider([
             'query' => Profile::find()
-                ->where(['is_funcionario' => 1])
-                ->all(),
+                ->where(['is_funcionario' => $i]),
         ]);
 
         return $this->render('funcionario', [
@@ -66,10 +68,10 @@ class ProfileController extends Controller
 
     public function actionCliente()
     {
+        $i = 1;
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Profile::find()
-                ->Where(['is_cliente' => 1])
-                ->all(),
+            'query' => Profile::find()->where(['is_cliente' => $i]),
         ]);
 
         return $this->render('cliente', [
@@ -97,9 +99,9 @@ class ProfileController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Profile();
+        $model = new SignupForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
             return $this->redirect(['view', 'id' => $model->nif]);
         }
 
@@ -156,5 +158,19 @@ class ProfileController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Obrigado pelo seu registo. Por favor, faça a verificação do seu email.');
+            return $this->goHome();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 }

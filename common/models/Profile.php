@@ -56,9 +56,9 @@ class Profile extends \yii\db\ActiveRecord
             'nif' => 'NIF',
             'telemovel' => 'Telemóvel',
             'morada' => 'Morada',
-            'is_admin' => 'Is Admin',
-            'is_funcionario' => 'Is Funcionario',
-            'is_cliente' => 'Is Cliente',
+            'is_admin' => 'Administrador',
+            'is_funcionario' => 'Funcionario',
+            'is_cliente' => 'Cliente',
             'id_user' => 'Id User',
         ];
     }

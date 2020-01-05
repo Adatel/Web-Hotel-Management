@@ -2,12 +2,11 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\SignupFormOld */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Registar';
+$this->title = 'Registar Utilizador';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
@@ -32,6 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
+
+                <?= $form->field($model, 'is_funcionario')->checkbox(['label' => 'Funcionário', 'uncheck' => 0, 'value' => 1]) ?>
+
+                <?= $form->field($model, 'is_cliente')->checkbox(['label' => 'Cliente', 'uncheck' => 0, 'value' => 1]) ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Registar', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

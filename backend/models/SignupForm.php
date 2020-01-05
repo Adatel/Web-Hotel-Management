@@ -1,5 +1,5 @@
 <?php
-namespace frontend\models;
+namespace backend\models;
 
 use common\models\Profile;
 use common\models\User;
@@ -71,8 +71,8 @@ class SignupForm extends Model
         $profile->telemovel = $this->telemovel;
         $profile->morada = $this->morada;
         $profile->is_admin = 0;
-        $profile->is_funcionario = 0;
-        $profile->is_cliente = 1;
+        $profile->is_funcionario = $this->is_funcionario;
+        $profile->is_cliente = $this->is_cliente;
         $profile->id_user = $user->id;
         $profile->save();
 
