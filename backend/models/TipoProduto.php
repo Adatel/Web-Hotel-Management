@@ -19,7 +19,7 @@ class TipoProduto extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'tipoproduto';
+        return 'tipo_produto';
     }
 
     /**

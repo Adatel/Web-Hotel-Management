@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'data_entrada',
             'data_saida',
             'num_pessoas',
@@ -32,8 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'quarto_duplo',
             //'quarto_familia',
             //'quarto_casal',
-            //'id_cliente',
-            //'id_funcionario',
+            'cliente.nif',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

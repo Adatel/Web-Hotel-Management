@@ -53,7 +53,7 @@ class Profile extends \yii\db\ActiveRecord
     {
         return [
             'nome' => 'Nome',
-            'nif' => 'Nif',
+            'nif' => 'NIF',
             'telemovel' => 'Telemóvel',
             'morada' => 'Morada',
             'is_admin' => 'Is Admin',
