@@ -32,6 +32,26 @@ class UsersController extends ActiveController
         } return null;
     }
 
+    public function actions()
+    {
+        $actions = parent::actions();
+
+        unset($actions['index']);
+
+        return $actions;
+    }
+
+    public function actionIndex(){
+
+        $user = Yii::$app->user->identity;
+
+        $utilizador = User::find()
+            ->where(['id' => $user->getId()])
+            ->one();
+
+        return $utilizador;
+    }
+
     public function actionSignup(){
 
         $model = new SignupForm();

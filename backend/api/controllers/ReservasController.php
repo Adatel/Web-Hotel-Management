@@ -2,9 +2,68 @@
 
 namespace backend\api\controllers;
 
+use common\models\Reserva;
+use common\models\User;
+use Yii;
+use yii\filters\auth\CompositeAuth;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\QueryParamAuth;
 use yii\rest\ActiveController;
 
 class ReservasController extends ActiveController
 {
     public $modelClass = 'common\models\Reserva';
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => CompositeAuth::className(),
+            'authMethods' => [
+                [
+                    'class' => HttpBasicAuth::className(),
+                    'auth' =>  [$this, 'auth'],
+                ],
+                QueryParamAuth::className(),
+            ],
+        ];
+        return $behaviors;
+    }
+
+    public function auth($username, $password)
+    {
+        $user = \common\models\User::findByUsername($username);
+        if ($user && $user->validatePassword($password))
+        {
+            return $user;
+        }
+        return null;
+    }
+
+    public function actions()
+    {
+        $actions = parent::actions();
+
+        unset($actions['index']);
+
+        return $actions;
+    }
+
+    public function actionIndex(){
+
+        $user = Yii::$app->user->identity;
+
+        $reservas = Reserva::find()
+                        ->where(['id_cliente' => $user->getId()])
+                        ->asArray()
+                        ->all();
+
+        return $reservas;
+    }
+
+    /*public function actions()
+    {
+        $
+        return $actions:
+    }*/
 }
