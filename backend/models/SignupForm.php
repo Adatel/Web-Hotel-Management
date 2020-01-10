@@ -55,7 +55,7 @@ class SignupForm extends Model
      *
      * @return bool whether the creating new account was successful and email was sent
      */
-    public function signup()
+    public function signupCliente()
     {
         $user = new User();
         $user->username = $this->username;
@@ -63,7 +63,7 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
-        $user->save();
+        $user->save(false);
 
         $profile = new Profile();
         $profile->nome = $this->nome;
@@ -71,10 +71,34 @@ class SignupForm extends Model
         $profile->telemovel = $this->telemovel;
         $profile->morada = $this->morada;
         $profile->is_admin = 0;
-        $profile->is_funcionario = $this->is_funcionario;
-        $profile->is_cliente = $this->is_cliente;
+        $profile->is_funcionario = 0;
+        $profile->is_cliente = 1;
         $profile->id_user = $user->id;
-        $profile->save();
+        $profile->save(false);
+
+        return $this->sendEmail($user);
+    }
+
+    public function signupFuncionario()
+    {
+        $user = new User();
+        $user->username = $this->username;
+        $user->email = $this->email;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+        $user->generateEmailVerificationToken();
+        $user->save(false);
+
+        $profile = new Profile();
+        $profile->nome = $this->nome;
+        $profile->nif = $this->nif;
+        $profile->telemovel = $this->telemovel;
+        $profile->morada = $this->morada;
+        $profile->is_admin = 0;
+        $profile->is_funcionario = 0;
+        $profile->is_cliente = 1;
+        $profile->id_user = $user->id;
+        $profile->save(false);
 
         return $this->sendEmail($user);
     }
