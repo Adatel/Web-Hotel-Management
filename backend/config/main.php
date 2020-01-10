@@ -61,6 +61,7 @@ return [
                     'extraPatterns' => [
                         'POST signup' => 'signup',
                         'GET total' => 'total',
+                        'GET {id}/reservaquartos' => 'reservaquartos',
                     ],
                 ],
             ],

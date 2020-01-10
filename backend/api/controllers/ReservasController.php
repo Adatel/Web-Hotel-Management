@@ -3,6 +3,7 @@
 namespace backend\api\controllers;
 
 use common\models\Reserva;
+use common\models\ReservaQuarto;
 use common\models\User;
 use Yii;
 use yii\filters\auth\CompositeAuth;
@@ -49,6 +50,7 @@ class ReservasController extends ActiveController
         return $actions;
     }
 
+    // Método que devolve as reservas do cliente após a autenticação
     public function actionIndex(){
 
         $user = Yii::$app->user->identity;
@@ -61,9 +63,16 @@ class ReservasController extends ActiveController
         return $reservas;
     }
 
-    /*public function actions()
-    {
-        $
-        return $actions:
-    }*/
+    // Método que devolve os quartos reservados da reserva
+    public function actionReservaquartos($id){
+
+        $reserva = Reserva::find()->where(['id' => $id])->one();
+
+        $reservaQuartos = ReservaQuarto::find()
+            ->where(['id_reserva' => $reserva->id])
+            ->asArray()
+            ->all();
+
+        return $reservaQuartos;
+    }
 }
