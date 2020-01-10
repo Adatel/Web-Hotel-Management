@@ -65,10 +65,6 @@ class UsersController extends ActiveController
         $model->telemovel = $params['telemovel'];
         $model->morada = $params['morada'];
 
-        $model->is_admin = 0;
-        $model->is_funcionario = 0;
-        $model->is_cliente = 1;
-
         if($model->signup()){
             $response['isSuccess'] = 201;
             $response['message'] = "Cliente registado com sucesso!";
