@@ -21,7 +21,6 @@ class ReservaquartosController extends ActiveController
                     'class' => HttpBasicAuth::className(),
                     'auth' =>  [$this, 'auth'],
                 ],
-                QueryParamAuth::className(),
             ],
         ];
         return $behaviors;
