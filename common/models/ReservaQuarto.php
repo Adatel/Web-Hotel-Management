@@ -75,6 +75,9 @@ class ReservaQuarto extends \yii\db\ActiveRecord
         return $this->hasOne(Quarto::className(), ['num_quarto' => 'id_quarto']);
     }
 
+
+    // <----------------- Métodos para API ----------------->
+
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
