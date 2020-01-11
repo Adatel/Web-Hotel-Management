@@ -53,8 +53,19 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['username', 'password'], 'required'],
+            [['username', 'password'], 'string', 'max' => 30],
+
             ['status', 'user', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'Username',
+            'password' => 'Password'
         ];
     }
 
@@ -63,7 +74,8 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        //return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return  static::findOne($id);
     }
 
     /**
