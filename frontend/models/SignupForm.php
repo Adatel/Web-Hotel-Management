@@ -65,6 +65,10 @@ class SignupForm extends Model
         $user->generateEmailVerificationToken();
         $user->save(false);
 
+        $auth = \Yii::$app->authManager;
+        $cliente = $auth->getRole('Cliente');
+        $auth->assign($cliente, $user->getId());
+
         $profile = new Profile();
         $profile->nome = $this->nome;
         $profile->nif = $this->nif;

@@ -13,6 +13,9 @@ class m191219_103642_init_rbac extends Migration
 
 
         // <------------------------- PERMISSÕES ------------------------->
+
+
+        // <-------- Permissões Reservas --------->
         $createReserva = $auth->createPermission('createReserva');
         $createReserva->description = 'Criar Reserva';
         $auth->add($createReserva);
@@ -21,6 +24,35 @@ class m191219_103642_init_rbac extends Migration
         $updateReserva->description = 'Atualizar Reserva';
         $auth->add($updateReserva);
 
+        $deleteReserva = $auth->createPermission('deleteReserva');
+        $deleteReserva->description = 'Apagar Reserva';
+        $auth->add($deleteReserva);
+
+        // <-------- Permissões Pedidos --------->
+        $createPedido = $auth->createPermission('createPedido');
+        $createPedido->description = 'Criar Pedido';
+        $auth->add($createPedido);
+
+        $updatePedido = $auth->createPermission('updatePedido');
+        $updatePedido->description = 'Atualizar Pedido';
+        $auth->add($updatePedido);
+
+        $deletePedido = $auth->createPermission('deletePedido');
+        $deletePedido->description = 'Apagar Pedido';
+        $auth->add($deletePedido);
+
+        // <-------- Permissões Quartos --------->
+        $createQuarto = $auth->createPermission('createQuarto');
+        $createQuarto->description = 'Criar Quarto';
+        $auth->add($createQuarto);
+
+        $updateQuarto = $auth->createPermission('updateQuarto');
+        $updateQuarto->description = 'Atualizar Quarto';
+        $auth->add($updateQuarto);
+
+        $deleteQuarto = $auth->createPermission('deleteQuarto');
+        $deleteQuarto->description = 'Apagar Quarto';
+        $auth->add($deleteQuarto);
 
         // <---------------------------- ROLES ---------------------------->
         $cliente = $auth->createRole('Cliente');
@@ -29,11 +61,16 @@ class m191219_103642_init_rbac extends Migration
 
         $admin = $auth->createRole('Admin');
         $auth -> add($admin);
-        $auth -> addChild($admin, $updateReserva);
+        $auth -> addChild($admin, $updateReserva, $deleteReserva);
         $auth -> addChild($admin, $cliente);
+
+        $funcionario = $auth->createRole('Funcionário');
+        $auth->add($funcionario);
+        $auth->addChild($funcionario, $updatePedido);
 
         $auth->assign($admin, 1);
         $auth->assign($cliente, 2);
+        $auth->assign($funcionario, 3);
 
 
     }
