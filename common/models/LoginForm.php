@@ -53,7 +53,7 @@ class LoginForm extends Model
      *
      * @return bool whether the user is logged in successfully
      */
-    public function login()
+    public function loginbackend()
     {
         if ($this->validate()) {
             $user = User::find()->where(['username' => $this->username])->one();
@@ -65,6 +65,21 @@ class LoginForm extends Model
             }
         }
         
+        return false;
+    }
+
+    public function loginfrontend()
+    {
+        if ($this->validate()) {
+            $user = User::find()->where(['username' => $this->username])->one();
+            //var_dump($id->id);
+            //die();
+            $profile = Profile::find()->where(['id_user' => $user->id])->one();
+            if($profile->is_cliente == 1 || $profile->is_admin == 1){
+                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            }
+        }
+
         return false;
     }
 
