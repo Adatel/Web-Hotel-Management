@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Quarto */
+/* @var $model backend\models\Quarto */
 
 $this->title = $model->num_quarto;
 $this->params['breadcrumbs'][] = ['label' => 'Quartos', 'url' => ['index']];

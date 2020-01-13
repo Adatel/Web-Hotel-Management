@@ -95,8 +95,8 @@ class SignupForm extends Model
         $profile->telemovel = $this->telemovel;
         $profile->morada = $this->morada;
         $profile->is_admin = 0;
-        $profile->is_funcionario = 0;
-        $profile->is_cliente = 1;
+        $profile->is_funcionario = 1;
+        $profile->is_cliente = 0;
         $profile->id_user = $user->id;
         $profile->save(false);
 

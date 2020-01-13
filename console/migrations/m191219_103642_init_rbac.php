@@ -11,6 +11,8 @@ class m191219_103642_init_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
+
+        // <------------------------- PERMISSÕES ------------------------->
         $createReserva = $auth->createPermission('createReserva');
         $createReserva->description = 'Criar Reserva';
         $auth->add($createReserva);
@@ -19,6 +21,8 @@ class m191219_103642_init_rbac extends Migration
         $updateReserva->description = 'Atualizar Reserva';
         $auth->add($updateReserva);
 
+
+        // <---------------------------- ROLES ---------------------------->
         $cliente = $auth->createRole('Cliente');
         $auth->add($cliente);
         $auth->addChild($cliente, $createReserva);
@@ -28,8 +32,8 @@ class m191219_103642_init_rbac extends Migration
         $auth -> addChild($admin, $updateReserva);
         $auth -> addChild($admin, $cliente);
 
-        $auth->assign($cliente, 2);
         $auth->assign($admin, 1);
+        $auth->assign($cliente, 2);
 
 
     }

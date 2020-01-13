@@ -48,7 +48,7 @@ class Produto extends \yii\db\ActiveRecord
             'id' => 'ID',
             'designacao' => 'Designação',
             'preco_unitario' => 'Preço Unitário',
-            'id_tipo' => 'Id Tipo',
+            'id_tipo' => 'Tipo',
         ];
     }
 

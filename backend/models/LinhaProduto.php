@@ -47,8 +47,8 @@ class LinhaProduto extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'quantidade' => 'Quantidade',
-            'id_produto' => 'Id Produto',
-            'id_pedido' => 'Id Pedido',
+            'id_produto' => 'Produto',
+            'id_pedido' => 'Pedido nº:',
         ];
     }
 

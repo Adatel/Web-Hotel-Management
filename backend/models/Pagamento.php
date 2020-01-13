@@ -44,7 +44,7 @@ class Pagamento extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'id_reserva' => 'Id Reserva',
+            'id_reserva' => 'Reserva',
             'total' => 'Total',
         ];
     }

@@ -1,7 +1,8 @@
 <?php
 
-namespace common\models;
+namespace backend\models;
 
+use common\models\ReservaQuarto;
 use Yii;
 
 /**
@@ -44,7 +45,7 @@ class Quarto extends \yii\db\ActiveRecord
     {
         return [
             'num_quarto' => 'Número do Quarto',
-            'id_tipo' => 'Id Tipo',
+            'id_tipo' => 'Tipo de Quarto',
             'estado' => 'Estado',
         ];
     }

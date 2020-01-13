@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Pedido */
+/* @var $model backend\models\Pedido */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -18,10 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_reservaquarto')->textInput() ?>
 
-    <?= $form->field($model, 'id_funcionario')->textInput() ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Registar', ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

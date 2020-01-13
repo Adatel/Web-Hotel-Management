@@ -32,7 +32,7 @@ class ProfileController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['cliente', 'funcionario', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['cliente', 'funcionario', 'view', 'createcliente', 'createfuncionario', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -97,15 +97,28 @@ class ProfileController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreatecliente()
     {
         $model = new SignupForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+        if ($model->load(Yii::$app->request->post()) && $model->signupCliente()) {
             return $this->redirect(['view', 'id' => $model->nif]);
         }
 
-        return $this->render('create', [
+        return $this->render('createcliente', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionCreatefuncionario()
+    {
+        $model = new SignupForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->signupFuncionario()) {
+            return $this->redirect(['view', 'id' => $model->nif]);
+        }
+
+        return $this->render('createfuncionario', [
             'model' => $model,
         ]);
     }

@@ -53,7 +53,7 @@ class Pedido extends \yii\db\ActiveRecord
             'id' => 'ID',
             'data_hora' => 'Data e Hora',
             'custo' => 'Custo',
-            'id_reservaquarto' => 'Id ReservaQuarto',
+            'id_reservaquarto' => 'Reserva do Quarto',
         ];
     }
 
