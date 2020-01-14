@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-signup">
     <h2><?= Html::encode($this->title) ?></h2>
 
-    <br>
+    <p>Por favor preencha os campos seguintes para se registar:</p>
 
     <div class="row">
         <div class="col-lg-5">
