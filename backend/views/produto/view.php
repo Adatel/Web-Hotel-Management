@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'designacao',
             'preco_unitario',
             'tipo.descricao_tipo',
+            //'id_tipo',
         ],
     ]) ?>
 

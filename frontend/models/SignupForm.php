@@ -5,6 +5,7 @@ use common\models\Profile;
 use common\models\User;
 use Yii;
 use yii\base\Model;
+use yii\swiftmailer\Mailer;
 
 /**
  * Signup form
@@ -29,7 +30,6 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-
            [['nome', 'nif', 'telemovel', 'morada', 'id_user'], 'required'],
             [['nif', 'telemovel', 'is_admin', 'is_funcionario', 'is_cliente', 'id_user'], 'integer'],
             [['nome', 'morada'], 'string', 'max' => 80],
@@ -61,6 +61,7 @@ class SignupForm extends Model
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
+        $user->status = 9;
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();
         $user->save(false);

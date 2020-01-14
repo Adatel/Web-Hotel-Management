@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'preco_unitario')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'id_tipo')->textInput() ?>
+    <?= $form->field($model , 'id_tipo')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\TipoProduto::find()->all(), 'id', 'descricao_tipo'),['class' => 'form-control inline-block']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-info']) ?>

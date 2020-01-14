@@ -5,6 +5,9 @@
 /* @var $numeroQuartosOcupados \frontend\controllers\SiteController */
 /* @var $numeroQuartosLivres \frontend\controllers\SiteController */
 
+
+use yii\bootstrap\Html;
+
 $this->title ="Adatel";
 
 use Carbon\Carbon;
