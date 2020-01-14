@@ -94,4 +94,71 @@ class Profile extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Reserva::className(), ['id_funcionario' => 'id_user']);
     }
+
+    /**
+     * @return string
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param string $nome
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNif()
+    {
+        return $this->nif;
+    }
+
+    /**
+     * @param int $nif
+     */
+    public function setNif($nif)
+    {
+        $this->nif = $nif;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelemovel()
+    {
+        return $this->telemovel;
+    }
+
+    /**
+     * @param int $telemovel
+     */
+    public function setTelemovel($telemovel)
+    {
+        $this->telemovel = $telemovel;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMorada()
+    {
+        return $this->morada;
+    }
+
+    /**
+     * @param string $morada
+     */
+    public function setMorada($morada)
+    {
+        $this->morada = $morada;
+    }
+
+
+
 }

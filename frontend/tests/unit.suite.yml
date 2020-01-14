@@ -3,5 +3,10 @@ actor: UnitTester
 modules:
     enabled:
         - Yii2:
-            part: [orm, email, fixtures]
+              part: [orm, email, fixtures]
+              cleanup: false
+        - Db:
+              dsn: 'mysql:host=localhost;dbname=adatel_test'
+              user: 'root'
+              password: ''
         - Asserts
