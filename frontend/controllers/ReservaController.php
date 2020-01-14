@@ -2,8 +2,8 @@
 
 namespace frontend\controllers;
 
+use backend\models\Quarto;
 use common\models\ReservaForm;
-use common\models\Quarto;
 use common\models\ReservaQuarto;
 use Yii;
 use common\models\Reserva;
@@ -113,7 +113,7 @@ class ReservaController extends Controller
         //$model = new ReservaForm();
         $model = $this->findModel($id);
 
-        if($model->load(Yii::$app->request->post()) && $model->alterarReserva($model)){
+        if($model->load(Yii::$app->request->post()) && $model->save($model)){
             Yii::$app->session->setFlash('success', 'A sua reserva foi alterada com sucesso!');
             return $this->redirect(['view', 'id' => $model->id]);
         }

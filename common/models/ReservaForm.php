@@ -47,8 +47,13 @@ class ReservaForm extends Model
     public function criarReserva()
     {
         $user = Profile::find()->where(['nif' => $this->nif])->one();
-        //var_dump($user->id_user);
+        //var_dump($user);
         //die();
+        if($user != null){
+            $id_utilizador = $user->id_user;
+        } else {
+            $id_utilizador = Yii::$app->user->getId();
+        }
 
         $reserva = new Reserva();
         $reserva->data_entrada = $this->data_entrada;
@@ -60,7 +65,7 @@ class ReservaForm extends Model
         $reserva->quarto_familia = $this->quarto_familia;
         $count = $this->quarto_solteiro + $this->quarto_duplo + $this->quarto_familia + $this->quarto_casal;
         $reserva->num_quartos = $count;
-        $reserva->id_cliente = $user->id_user;
+        $reserva->id_cliente = $id_utilizador;
 
         $this->tipo1 = Quarto::find()
             ->where(['estado' => 0, 'id_tipo' => 1])->count();
