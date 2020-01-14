@@ -4,6 +4,7 @@ namespace backend\api\controllers;
 
 use Yii;
 use frontend\models\SignupForm;
+use yii\helpers\Console;
 use yii\rest\ActiveController;
 use yii\filters\auth\HttpBasicAuth;
 use common\models\User;
@@ -26,6 +27,7 @@ class UsersController extends ActiveController
     public function auth($username, $password)
     {
         $user = \common\models\User::findByUsername($username);
+
         if ($user && $user->validatePassword($password))
         {
             return $user;
