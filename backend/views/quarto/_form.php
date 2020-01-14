@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'estado')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-info']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-info', 'name' => 'save-quarto']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

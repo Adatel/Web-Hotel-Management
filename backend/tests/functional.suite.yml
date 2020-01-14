@@ -2,7 +2,7 @@ suite_namespace: backend\tests\functional
 actor: FunctionalTester
 modules:
     enabled:
-        - Asserts
         - Yii2:
               configFile: 'config/test.php'
-              part: init
+              environment: 'test'
+              cleanup: false

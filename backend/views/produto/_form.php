@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model , 'id_tipo')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\TipoProduto::find()->all(), 'id', 'descricao_tipo'),['class' => 'form-control inline-block']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-info']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-info', 'name' => 'save-button']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
