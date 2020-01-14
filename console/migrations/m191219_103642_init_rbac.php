@@ -68,6 +68,10 @@ class m191219_103642_init_rbac extends Migration
         $auth->add($funcionario);
         $auth->addChild($funcionario, $updatePedido);
 
+        $rececionista = $auth->createRole('Rececionista');
+        $auth->add($rececionista);
+        $auth->addChild($rececionista, $createReserva);
+
         $auth->assign($admin, 1);
         $auth->assign($cliente, 2);
         $auth->assign($funcionario, 3);

@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = 'Alterar Reserva';
     <h2><?= Html::encode($this->title) ?></h2>
     <br>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_formupdate', [
         'model' => $model,
     ]) ?>
 

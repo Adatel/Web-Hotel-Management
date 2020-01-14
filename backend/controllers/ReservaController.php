@@ -2,6 +2,9 @@
 
 namespace backend\controllers;
 
+use backend\models\Quarto;
+use common\models\ReservaForm;
+use common\models\ReservaQuarto;
 use Yii;
 use common\models\Reserva;
 use yii\data\ActiveDataProvider;
@@ -82,10 +85,11 @@ class ReservaController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Reserva();
+        $model = new ReservaForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) && $model->criarReserva()) {
+            Yii::$app->session->setFlash('success', 'A sua reserva foi criada com sucesso!');
+            return $this->actionIndex();
         }
 
         return $this->render('create', [
@@ -122,6 +126,22 @@ class ReservaController extends Controller
      */
     public function actionDelete($id)
     {
+        $reservas_quartos = ReservaQuarto::find()
+            ->where(['id_reserva' => $id])
+            ->all();
+
+        foreach ($reservas_quartos as $reserva_quarto){
+
+            $quarto = Quarto::find()
+                ->where([ 'num_quarto' => $reserva_quarto->id_quarto])
+                ->one();
+
+            $quarto->estado = 0 ;
+            $quarto->save();
+
+            $reserva_quarto->delete();
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

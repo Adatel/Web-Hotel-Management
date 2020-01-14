@@ -2,34 +2,47 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Reserva */
 /* @var $form yii\widgets\ActiveForm */
+
 ?>
 
 <div class="reserva-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'data_entrada')->textInput() ?>
+    <!-- https://demos.krajee.com/widget-details/datepicker -->
+    <?= $form->field($model, 'data_entrada')->widget(DatePicker::className(), [
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
+        ]
+    ]); ?>
 
-    <?= $form->field($model, 'data_saida')->textInput() ?>
+    <?= $form->field($model, 'data_saida')->widget(DatePicker::className(), [
+        'pluginOptions' => [
+            'autoclose'=>true,
+            'format' => 'yyyy-m-dd'
+        ]
+    ]); ?>
 
-    <?= $form->field($model, 'num_pessoas')->textInput() ?>
+    <?= $form->field($model, 'num_pessoas')->textInput(['type' => 'number', 'value' => 1, 'min' => 1]) ?>
 
-    <?= $form->field($model, 'quarto_solteiro')->textInput() ?>
+    <?= $form->field($model, 'quarto_solteiro')->textInput(['type' => 'number', 'value' => 0, 'min' => 0]) ?>
 
-    <?= $form->field($model, 'quarto_duplo')->textInput() ?>
+    <?= $form->field($model, 'quarto_casal')->textInput(['type' => 'number', 'value' => 0]) ?>
 
-    <?= $form->field($model, 'quarto_familia')->textInput() ?>
+    <?= $form->field($model, 'quarto_duplo')->textInput(['type' => 'number', 'value' => 0]) ?>
 
-    <?= $form->field($model, 'quarto_casal')->textInput() ?>
+    <?= $form->field($model, 'quarto_familia')->textInput(['type' => 'number', 'value' => 0]) ?>
 
-    <?= $form->field($model, 'id_cliente')->textInput() ?>
+    <?= $form->field($model, 'nif')->textInput(['type' => 'number', 'value' => 0]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-info']) ?>
+        <?= Html::submitButton('Criar Reserva', ['class' => 'btn btn-info']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

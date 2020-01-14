@@ -9,6 +9,7 @@
 namespace common\models;
 
 
+use backend\models\Quarto;
 use Carbon\Carbon;
 use Yii;
 use yii\base\Model;
@@ -25,6 +26,7 @@ class ReservaForm extends Model
     public $quarto_duplo;
     public $quarto_familia;
     public $quarto_casal;
+    public $nif;
 
     public $tipo1 = 0, $tipo2 = 0, $tipo3 = 0, $tipo4 = 0;
 
@@ -32,7 +34,7 @@ class ReservaForm extends Model
     public function rules()
     {
         return [
-            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'id_cliente'], 'required'],
+            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'id_cliente', 'nif'], 'required'],
             [['data_entrada', 'data_saida'], 'safe'],
             [['num_pessoas', 'num_quartos', 'quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'id_cliente'], 'integer'],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
@@ -44,9 +46,9 @@ class ReservaForm extends Model
 
     public function criarReserva()
     {
-
-        $user = Yii::$app->user->id;
-        //var_dump($user);
+        $user = Profile::find()->where(['nif' => $this->nif])->one();
+        //var_dump($user->id_user);
+        //die();
 
         $reserva = new Reserva();
         $reserva->data_entrada = $this->data_entrada;
@@ -58,7 +60,7 @@ class ReservaForm extends Model
         $reserva->quarto_familia = $this->quarto_familia;
         $count = $this->quarto_solteiro + $this->quarto_duplo + $this->quarto_familia + $this->quarto_casal;
         $reserva->num_quartos = $count;
-        $reserva->id_cliente = $user;
+        $reserva->id_cliente = $user->id_user;
 
         $this->tipo1 = Quarto::find()
             ->where(['estado' => 0, 'id_tipo' => 1])->count();
@@ -135,6 +137,7 @@ class ReservaForm extends Model
         }
     }
 
+    /*
     public function alterarReserva($model){
 
         var_dump($model);
@@ -175,5 +178,6 @@ class ReservaForm extends Model
             Yii::$app->session->setFlash('error', 'Verifique as datas de reserva. Só é possivel fazer reserva até 2 dias de antecedência!');
         }
     }
+    */
 }
 

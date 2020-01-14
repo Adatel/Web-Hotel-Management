@@ -3,6 +3,7 @@
 namespace common\models;
 
 use backend\models\Pedido;
+use backend\models\Quarto;
 use Yii;
 
 /**
@@ -75,6 +76,7 @@ class ReservaQuarto extends \yii\db\ActiveRecord
         return $this->hasOne(Quarto::className(), ['num_quarto' => 'id_quarto']);
     }
 
+    /*
 
     // <----------------- Métodos para API ----------------->
 
@@ -125,4 +127,5 @@ class ReservaQuarto extends \yii\db\ActiveRecord
             file_put_contents('debug.output','Time out!');
          }
     }
+    */
 }
