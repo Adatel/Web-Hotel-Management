@@ -11,7 +11,7 @@ class FuncionarioCest
     public function tryToTest(FunctionalTester $I)
     {
         $I->amOnPage('/site/login');
-        $I->fillField('Username', 'Alex');
+        $I->fillField('Username', 'Adatel');
         $I->fillField('Password', '123456789');
         $I->click('login-button');
 
