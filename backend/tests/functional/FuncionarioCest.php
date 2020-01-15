@@ -1,7 +1,7 @@
 <?php namespace backend\tests\functional;
 use backend\tests\FunctionalTester;
 
-class ClienteCest
+class FuncionarioCest
 {
     public function _before(FunctionalTester $I)
     {
@@ -15,18 +15,18 @@ class ClienteCest
         $I->fillField('Password', '123456789');
         $I->click('login-button');
 
-        $I->click('Clientes');
-        $I->click('Registar Cliente');
+        $I->click('Funcionários');
+        $I->click('Registar Funcionário');
 
-        $I->fillField('Nome','Teste Cest');
-        $I->fillField('Nif','718293654');
+        $I->fillField('Nome','Funcionario Cest');
+        $I->fillField('Nif','937182645');
         $I->fillField('Telemovel','965012478');
-        $I->fillField('Morada','Rua Teste teste');
-        $I->fillField('Username','TestCest');
-        $I->fillField('Email','TestCest@gmail.com');
+        $I->fillField('Morada','Rua Funcionario teste');
+        $I->fillField('Username','FuncionarioCest');
+        $I->fillField('Email','FuncionarioCest@gmail.com');
         $I->fillField('Password','123456789');
 
         $I->click('signup-button');
-        $I->see('718293654');
+        $I->see('937182645');
     }
 }

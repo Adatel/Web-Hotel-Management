@@ -6,54 +6,28 @@ use frontend\tests\FunctionalTester;
 
 class SignupCest
 {
-    protected $formId = '#form-signup';
-
 
     public function _before(FunctionalTester $I)
     {
-        $I->amOnRoute('site/signup');
-    }
-
-    public function signupWithEmptyFields(FunctionalTester $I)
-    {
-        $I->see('Signup', 'h1');
-        $I->see('Please fill out the following fields to signup:');
-        $I->submitForm($this->formId, []);
-        $I->seeValidationError('Username cannot be blank.');
-        $I->seeValidationError('Email cannot be blank.');
-        $I->seeValidationError('Password cannot be blank.');
 
     }
 
-    public function signupWithWrongEmail(FunctionalTester $I)
-    {
-        $I->submitForm(
-            $this->formId, [
-            'SignupFormOld[username]'  => 'tester',
-            'SignupFormOld[email]'     => 'ttttt',
-            'SignupFormOld[password]'  => 'tester_password',
-        ]
-        );
-        $I->dontSee('Username cannot be blank.', '.help-block');
-        $I->dontSee('Password cannot be blank.', '.help-block');
-        $I->see('Email is not a valid email address.', '.help-block');
-    }
 
-    public function signupSuccessfully(FunctionalTester $I)
+    public function signupSuccess(FunctionalTester $I)
     {
-        $I->submitForm($this->formId, [
-            'SignupFormOld[username]' => 'tester',
-            'SignupFormOld[email]' => 'tester.email@example.com',
-            'SignupFormOld[password]' => 'tester_password',
-        ]);
+        $I->amOnPage('site/signup');
+        $I->fillField('Nome','Registar Cest');
+        $I->fillField('Nif','829173465');
+        $I->fillField('Telemovel','965012478');
+        $I->fillField('Morada','Rua Registar teste');
+        $I->fillField('Username','RegistarCest');
+        $I->fillField('Email','Registar@Cestgmail.com');
+        $I->fillField('Password','123456789');
 
-        $I->seeRecord('common\models\User', [
-            'username' => 'tester',
-            'email' => 'tester.email@example.com',
-            'status' => \common\models\User::STATUS_INACTIVE
-        ]);
+        $I->click('signup-button');
 
         $I->seeEmailIsSent();
         $I->see('Thank you for registration. Please check your inbox for verification email.');
     }
+
 }
