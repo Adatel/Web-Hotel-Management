@@ -80,4 +80,38 @@ class Pedido extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Profile::className(), ['id_user' => 'id_funcionario']);
     }
+
+    /**
+     * @return string
+     */
+    public function getDataHora()
+    {
+        return $this->data_hora;
+    }
+
+    /**
+     * @param string $data_hora
+     */
+    public function setDataHora($data_hora)
+    {
+        $this->data_hora = $data_hora;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCusto()
+    {
+        return $this->custo;
+    }
+
+    /**
+     * @param string $custo
+     */
+    public function setCusto($custo)
+    {
+        $this->custo = $custo;
+    }
+
+
 }
