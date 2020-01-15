@@ -3,11 +3,11 @@ namespace frontend\tests\functional;
 
 use frontend\tests\FunctionalTester;
 
-class AboutCest
+class SobreCest
 {
-    public function checkAbout(FunctionalTester $I)
+    public function checkSobre(FunctionalTester $I)
     {
         $I->amOnRoute('site/about');
-        $I->see('About', 'h1');
+        $I->see('Informações do Hotel', 'h1');
     }
 }
