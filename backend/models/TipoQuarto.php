@@ -54,4 +54,38 @@ class TipoQuarto extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Quarto::className(), ['id_tipo' => 'id']);
     }
+
+    /**
+     * @return string
+     */
+    public function getDesignacao()
+    {
+        return $this->designacao;
+    }
+
+    /**
+     * @param string $designacao
+     */
+    public function setDesignacao($designacao)
+    {
+        $this->designacao = $designacao;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrecoNoite()
+    {
+        return $this->preco_noite;
+    }
+
+    /**
+     * @param float $preco_noite
+     */
+    public function setPrecoNoite($preco_noite)
+    {
+        $this->preco_noite = $preco_noite;
+    }
+
+
 }

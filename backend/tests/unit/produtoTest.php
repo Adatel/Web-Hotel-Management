@@ -34,7 +34,7 @@ class produtoTest extends \Codeception\Test\Unit
         $this->assertTrue($produto->validate(['designacao']));
 
 
-        //<---------------------------------------- PREÇO UNITÁRIO ---------------------------------------->
+        //<---------------------------------------- PREÇO POR NOITE ---------------------------------------->
         $produto->setPrecoUnitario(null);
         $this->assertFalse($produto->validate(['preco_unitario']));
 
@@ -42,6 +42,9 @@ class produtoTest extends \Codeception\Test\Unit
         $this->assertFalse($produto->validate(['preco_unitario']));
 
         $produto->setPrecoUnitario(5);
+        $this->assertTrue($produto->validate(['preco_unitario']));
+
+        $produto->setPrecoUnitario(5.5);
         $this->assertTrue($produto->validate(['preco_unitario']));
     }
 }
