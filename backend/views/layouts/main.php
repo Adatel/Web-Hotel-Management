@@ -48,7 +48,7 @@ AppAsset::register($this);
             ['label' => 'Reservas', 'url' => ['/reserva/index']],
             ['label' => 'Pedidos', 'url' => ['/pedido/index']],
             ['label' => 'Produtos', 'url' => ['/produto/index']],
-            ['label' => 'Pagamentos', 'url' => ['/pagamento/index']],
+            //['label' => 'Pagamentos', 'url' => ['/pagamento/index']],
         ];
         $menuItems[] =
             '<li>'
