@@ -11,7 +11,7 @@ class ReservaCest
     public function tryToTest(FunctionalTester $I)
     {
         $I->amOnPage('/site/login');
-        $I->fillField('Username', 'Adatel');
+        $I->fillField('Username', 'Alex');
         $I->fillField('Password', '123456789');
         $I->click('login-button');
 
@@ -22,6 +22,7 @@ class ReservaCest
         $I->fillField('input[id=reservaform-data_saida]',"2020-01-30");
         $I->fillField('Num Pessoas','1');
         $I->fillField('Quarto Familia','1');
+        $I->fillField('Nif','738291645');
         $I->click('save-button');
 
         $I->click('Reservas');

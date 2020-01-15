@@ -13,7 +13,7 @@ class ProdutosCest
         //cuidado ao fazer ver se na base de dados teste existe user ou se esta repetido
 
         $I->amOnPage('/site/login');
-        $I->fillField('Username', 'Adatel');
+        $I->fillField('Username', 'Alex');
         $I->fillField('Password', '123456789');
         $I->click('login-button');
 
