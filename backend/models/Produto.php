@@ -67,4 +67,38 @@ class Produto extends \yii\db\ActiveRecord
     {
         return $this->hasOne(TipoProduto::className(), ['id' => 'id_tipo']);
     }
+
+    /**
+     * @return string
+     */
+    public function getDesignacao()
+    {
+        return $this->designacao;
+    }
+
+    /**
+     * @param string $designacao
+     */
+    public function setDesignacao($designacao)
+    {
+        $this->designacao = $designacao;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrecoUnitario()
+    {
+        return $this->preco_unitario;
+    }
+
+    /**
+     * @param string $preco_unitario
+     */
+    public function setPrecoUnitario($preco_unitario)
+    {
+        $this->preco_unitario = $preco_unitario;
+    }
+
+
 }
