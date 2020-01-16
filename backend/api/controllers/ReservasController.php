@@ -80,5 +80,6 @@ class ReservasController extends ActiveController
             ->all();
 
         return $reservaQuartos;
-    }*/
+    }
+    */
 }
