@@ -26,7 +26,6 @@ class TipoprodutoController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => false,
                         'roles' => ['?'],
                     ],

@@ -27,7 +27,6 @@ class ProfileController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['cliente', 'funcionario', 'view', 'create', 'update', 'delete'],
                         'allow' => false,
                         'roles' => ['?'],
                     ],

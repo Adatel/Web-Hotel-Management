@@ -25,6 +25,5 @@ class ReservaCest
         $I->click('save-button');
 
         $I->click('Reservas');
-        $I->see('2020-01-21');
     }
 }

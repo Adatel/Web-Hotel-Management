@@ -6,4 +6,4 @@ modules:
         - Yii2:
               configFile: 'config/test.php'
               environment: 'test'
-           #   cleanup: false
+              cleanup: false
