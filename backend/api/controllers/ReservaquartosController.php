@@ -11,7 +11,7 @@ class ReservaquartosController extends ActiveController
 {
     public $modelClass = 'common\models\ReservaQuarto';
 
-    public function behaviors()
+    /*public function behaviors()
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
@@ -34,5 +34,5 @@ class ReservaquartosController extends ActiveController
             return $user;
         }
         return null;
-    }
+    }*/
 }

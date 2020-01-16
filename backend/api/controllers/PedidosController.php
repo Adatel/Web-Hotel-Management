@@ -11,7 +11,7 @@ class PedidosController extends ActiveController
 {
     public $modelClass = 'backend\models\Pedido';
 
-    public function behaviors()
+    /*public function behaviors()
     {
         $behaviors = parent::behaviors();
         $behaviors['authenticator'] = [
@@ -35,5 +35,5 @@ class PedidosController extends ActiveController
             return $user;
         }
         return null;
-    }
+    }*/
 }
