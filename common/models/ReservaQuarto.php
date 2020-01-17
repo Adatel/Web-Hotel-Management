@@ -76,7 +76,7 @@ class ReservaQuarto extends \yii\db\ActiveRecord
         return $this->hasOne(Quarto::className(), ['num_quarto' => 'id_quarto']);
     }
 
-    /*
+
 
     // <----------------- Métodos para API ----------------->
 
@@ -112,20 +112,24 @@ class ReservaQuarto extends \yii\db\ActiveRecord
 
     public function FazPublish($canal,$msg)
     {
-        $server = "192.168.1.67";
-        $port = 8081;
-        $username = "Diana"; // set your username
-        $password = "123456789"; // set your password
-        $client_id = "phpMQTT-publisher"; // unique!
-        $mqtt = new \backend\mosquitto\phpMQTT($server, $port, $client_id);
-        if ($mqtt->connect(true, NULL, $username, $password))
-        {
-            $mqtt->publish($canal, $msg, 0);
-            $mqtt->close();
+        try{
+            $server = "127.0.0.1";
+            $port = 1883;
+            $username = ""; // set your username
+            $password = ""; // set your password
+            $client_id = "phpMQTT-publisher"; // unique!
+            $mqtt = new \backend\mosquitto\phpMQTT($server, $port, $client_id);
+            if ($mqtt->connect(true, NULL, $username, $password))
+            {
+                $mqtt->publish($canal, $msg, 0);
+                $mqtt->close();
+            }
+            else {
+                file_put_contents('debug.output','Time out!');
+            }
+        }catch (\Throwable $throwable){
+
         }
-        else {
-            file_put_contents('debug.output','Time out!');
-         }
     }
-    */
+
 }

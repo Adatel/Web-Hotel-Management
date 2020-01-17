@@ -4,6 +4,7 @@ namespace backend\api\controllers;
 
 use Yii;
 use frontend\models\SignupForm;
+use yii\filters\auth\QueryParamAuth;
 use yii\helpers\Console;
 use yii\rest\ActiveController;
 use yii\filters\auth\HttpBasicAuth;
@@ -21,6 +22,7 @@ class UsersController extends ActiveController
             'class' => HttpBasicAuth::className(),
             'auth' => [$this, 'auth'],
         ];
+
         return $behaviors;
     }
 
