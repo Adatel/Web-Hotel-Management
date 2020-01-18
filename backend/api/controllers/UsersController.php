@@ -2,6 +2,7 @@
 
 namespace backend\api\controllers;
 
+use common\models\Reserva;
 use Yii;
 use frontend\models\SignupForm;
 use yii\filters\auth\QueryParamAuth;
@@ -14,7 +15,7 @@ use common\models\User;
 class UsersController extends ActiveController
 {
     public $modelClass = 'common\models\User';
-
+/*
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -81,10 +82,24 @@ class UsersController extends ActiveController
             return $response;
         }
     }
-
+*/
     public function  actionTotal(){
         $climodel = new $this->modelClass;
         $recs = $climodel::find()->all();
         return ['total' => count($recs)];
+    }
+
+    public function actionReservas($id){
+
+        $user = User::find()
+            ->where(['id' => $id])
+            ->one();
+
+        $reservas = Reserva::find()
+            ->where(['id_cliente' => $user->id])
+            ->asArray()
+            ->all();
+
+        return $reservas;
     }
 }

@@ -14,7 +14,7 @@ use yii\rest\ActiveController;
 class ReservasController extends ActiveController
 {
     public $modelClass = 'common\models\Reserva';
-
+/*
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -81,5 +81,5 @@ class ReservasController extends ActiveController
 
         return $reservaQuartos;
     }
-
+*/
 }
