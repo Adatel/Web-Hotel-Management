@@ -25,7 +25,6 @@ class LoginCest
         ];*/
     }
 
-    /** Mudar o user e Password para o user que existir na Adatel_Test */
     public function _before(FunctionalTester $I)
     {
         $I->amOnRoute('site/login');

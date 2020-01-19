@@ -15,7 +15,7 @@ use common\models\User;
 class UsersController extends ActiveController
 {
     public $modelClass = 'common\models\User';
-/*
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -56,7 +56,7 @@ class UsersController extends ActiveController
 
         return $utilizador;
     }
-
+/*
     public function actionSignup(){
 
         $model = new SignupForm();

@@ -28,4 +28,18 @@ class ReservasCest
 
         $I->click('Reservas');
     }
+
+
+    public function apagarReserva(FunctionalTester $I)
+    {
+        $I->amOnPage('/site/login');
+        $I->fillField('Username', 'Adatel');
+        $I->fillField('Password', '123456789');
+        $I->click('login-button');
+
+        $I->amOnPage('/profile/view?id=738291645');
+        $I->click('Delete');
+        //$I->acceptPopup('OK');
+        //$I->click('OK');
+    }
 }

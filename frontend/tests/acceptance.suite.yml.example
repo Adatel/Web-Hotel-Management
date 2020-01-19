@@ -2,8 +2,12 @@ suite_namespace: frontend\tests\acceptance
 actor: AcceptanceTester
 modules:
     enabled:
+        - PhpBrowser:
+              url: http://localhost:8080
+        - \Helper\Acceptance
         - WebDriver:
             url: http://localhost:8080
             browser: firefox
         - Yii2:
-            part: init
+              cleanup: false # don't wrap test in transaction
+              entryScript: index-test.php
