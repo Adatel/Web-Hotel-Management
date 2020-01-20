@@ -60,7 +60,8 @@ return [
                         'api/linhaprodutos',
                         'api/quartos',
                         'api/tipoprodutos',
-                        'api/tipoquartos'
+                        'api/tipoquartos',
+                        'api/classificacoes'
                     ],
                     'pluralize' => false,
                     'extraPatterns' => [
