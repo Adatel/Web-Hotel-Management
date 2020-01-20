@@ -40,13 +40,13 @@ class ReservasController extends ActiveController
         }
         return null;
     }
-
+*/
     public function  actionTotal(){
         $reservamodel = new $this->modelClass;
         $recs = $reservamodel::find()->all();
         return ['total' => count($recs)];
     }
-
+/*
     public function actions()
     {
         $actions = parent::actions();
@@ -68,7 +68,7 @@ class ReservasController extends ActiveController
 
         return $reservas;
     }
-
+*/
     // Método que devolve os quartos reservados da reserva
     public function actionReservaquartos($id){
 
@@ -81,5 +81,6 @@ class ReservasController extends ActiveController
 
         return $reservaQuartos;
     }
-*/
+
+
 }

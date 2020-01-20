@@ -2,7 +2,9 @@
 
 namespace backend\api\controllers;
 
+use backend\models\Pedido;
 use common\models\Reserva;
+use common\models\ReservaQuarto;
 use Yii;
 use frontend\models\SignupForm;
 use yii\filters\auth\QueryParamAuth;
@@ -101,5 +103,36 @@ class UsersController extends ActiveController
             ->all();
 
         return $reservas;
+    }
+
+    public function actionPedidos($id){
+
+        $allpedidos = [];
+
+        $user = User::find()
+            ->where(['id' => $id])
+            ->one();
+
+        $reservas = Reserva::find()
+            ->where(['id_cliente' => $user->id])
+            ->asArray()
+            ->all();
+
+        foreach ($reservas as $reserva) {
+            $reservaquartos = ReservaQuarto::find()
+                ->where(['id_reserva' => $reserva->id])
+                ->asArray()
+                ->all();
+
+            foreach ($reservaquartos as $reservaquarto) {
+                $pedidos = Pedido::find()
+                    ->where(['id_reserva' => $reserva->id])
+                    ->asArray()
+                    ->all();
+
+                $allpedidos += $pedidos;
+            }
+        }
+        return $allpedidos;
     }
 }

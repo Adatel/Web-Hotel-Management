@@ -55,13 +55,19 @@ return [
                         'api/users',
                         'api/reservas',
                         'api/reservaquartos',
-                        'api/pedidos'
+                        'api/pedidos',
+                        'api/produtos',
+                        'api/linhaprodutos',
+                        'api/quartos',
+                        'api/tipoprodutos',
+                        'api/tipoquartos'
                     ],
                     'pluralize' => false,
                     'extraPatterns' => [
                         'POST signup' => 'signup',
                         'GET total' => 'total',
                         'GET {id}/reservas' => 'reservas',
+                        'GET {id}/pedidos' => 'pedidos',
                         'GET {id}/reservaquartos' => 'reservaquartos',
                     ],
                 ],
