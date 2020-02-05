@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\TipoProduto;
+use backend\models\TipoProduto;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;

@@ -6,3 +6,9 @@ modules:
         - Yii2:
               configFile: 'config/test.php'
               part: init
+              cleanup: false
+        - Db:
+            dsn: 'mysql:host=localhost;dbname=adatel_test'
+            user: 'root'
+            password: ''
+        - Asserts

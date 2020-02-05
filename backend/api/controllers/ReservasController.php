@@ -4,7 +4,6 @@ namespace backend\api\controllers;
 
 use common\models\Reserva;
 use common\models\ReservaQuarto;
-use common\models\User;
 use Yii;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
@@ -14,7 +13,7 @@ use yii\rest\ActiveController;
 class ReservasController extends ActiveController
 {
     public $modelClass = 'common\models\Reserva';
-/*
+
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -40,13 +39,13 @@ class ReservasController extends ActiveController
         }
         return null;
     }
-*/
+
     public function  actionTotal(){
         $reservamodel = new $this->modelClass;
         $recs = $reservamodel::find()->all();
         return ['total' => count($recs)];
     }
-/*
+
     public function actions()
     {
         $actions = parent::actions();
@@ -68,7 +67,7 @@ class ReservasController extends ActiveController
 
         return $reservas;
     }
-*/
+
     // Método que devolve os quartos reservados da reserva
     public function actionReservaquartos($id){
 

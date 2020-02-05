@@ -66,4 +66,47 @@ class reservaTest extends \Codeception\Test\Unit
         $reserva->setDataSaida("2020-01-15");
         $this->assertTrue($reserva->validate(['data_saida']));
     }
+
+
+    public function testCriarReserva(){
+
+        $reserva = new Reserva();
+
+        $reserva->num_pessoas = 4;
+        $reserva->num_quartos = 3;
+        $reserva->quarto_solteiro = 2;
+        $reserva->quarto_duplo = 1;
+        $reserva->quarto_familia = 0;
+        $reserva->quarto_casal = 0;
+        $reserva->data_entrada = "2020-02-20";
+        $reserva->data_saida = "2020-02-25";
+        $reserva->id_cliente = 5;
+
+        $reserva->save();
+
+        $this->tester->seeInDatabase('reserva',['num_pessoas' => 4, 'num_quartos' => 3, 'quarto_solteiro' => 2, 'quarto_duplo' => 1, 'quarto_familia' => 0, 'quarto_casal' => 0, 'data_entrada' => '2020-02-20', 'data_saida' => '2020-02-25', 'id_cliente' => 5]);
+
+    }
+
+
+    public function testAlterarReserva(){
+
+        $this->tester->updateInDatabase('reserva', array('num_pessoas' => 6, 'num_quartos' => 4, 'quarto_casal' => 1, 'data_saida' => "2020-02-28"), array('data_entrada' => '2020-02-20', 'data_saida' => "2020-02-25"));
+
+        $this->tester->seeInDatabase('reserva',['num_pessoas' => 6, 'num_quartos' => 4, 'quarto_solteiro' => 2, 'quarto_duplo' => 1, 'quarto_familia' => 0, 'quarto_casal' => 1, 'data_entrada' => '2020-02-20', 'data_saida' => '2020-02-28', 'id_cliente' => 5]);
+
+    }
+
+
+    public function testApagarReserva(){
+
+        $reserva = Reserva::find()
+            ->where(['data_entrada' => "2020-02-20", 'id_cliente' => 5])
+            ->one();
+
+        $reserva->delete();
+
+        $this->tester->dontSeeInDatabase('reserva', ['num_pessoas' => 6, 'num_quartos' => 4, 'quarto_solteiro' => 2, 'quarto_duplo' => 1, 'quarto_familia' => 0, 'quarto_casal' => 1, 'data_entrada' => '2020-02-20', 'data_saida' => '2020-02-28', 'id_cliente' => 5]);
+    }
+
 }

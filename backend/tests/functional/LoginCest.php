@@ -42,7 +42,7 @@ class LoginCest
         $I->click('login-button');
 
 
-        $I->see('Logout (Alex)', 'form button[type=submit]');
+        $I->see('Logout (Adatel)', 'form button[type=submit]');
         $I->dontSeeLink('Login');
         $I->dontSeeLink('Signup');
 

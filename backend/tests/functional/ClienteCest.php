@@ -8,7 +8,7 @@ class ClienteCest
     }
 
     // tests
-    public function tryToTest(FunctionalTester $I)
+    public function registarCliente(FunctionalTester $I)
     {
         $I->amOnPage('/site/login');
         $I->fillField('Username', 'Adatel');

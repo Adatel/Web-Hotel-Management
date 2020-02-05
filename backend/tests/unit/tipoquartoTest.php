@@ -34,7 +34,7 @@ class tipoquartoTest extends \Codeception\Test\Unit
         $this->assertTrue($tipo_quarto->validate(['designacao']));
 
 
-        //<---------------------------------------- PREÇO UNITÁRIO ---------------------------------------->
+        //<---------------------------------------- PREÇO POR NOITE ---------------------------------------->
         $tipo_quarto->setPrecoNoite(null);
         $this->assertFalse($tipo_quarto->validate(['preco_noite']));
 
@@ -47,4 +47,39 @@ class tipoquartoTest extends \Codeception\Test\Unit
         $tipo_quarto->setPrecoNoite(5.5);
         $this->assertTrue($tipo_quarto->validate(['preco_noite']));
     }
+
+    public function testCriarTipoquarto(){
+
+        $tipoquarto = new TipoQuarto();
+
+        $tipoquarto->designacao = "Suite";
+        $tipoquarto->preco_noite = 35;
+
+        $tipoquarto->save();
+
+        $this->tester->seeInDatabase('tipo_quarto', ['designacao' => "Suite", 'preco_noite' => 35]);
+
+    }
+
+
+    public function testAlterarTipoquarto(){
+
+        $this->tester->updateInDatabase('tipo_quarto', array('designacao' => "Suite Test", 'preco_noite' => 40), array('designacao' => "Suite", 'preco_noite' => 35));
+
+        $this->tester->seeInDatabase('tipo_quarto', ['designacao' => "Suite Test", 'preco_noite' => 40]);
+
+    }
+
+
+    public function testApagarTipoquarto(){
+
+        $tipoquarto = TipoQuarto::find()
+            ->where(['designacao' => "Suite Test", 'preco_noite' => 40])
+            ->one();
+
+        $tipoquarto->delete();
+
+        $this->tester->dontSeeInDatabase('tipo_quarto', ['designacao' => "Suite Test", 'preco_noite' => 40]);
+    }
+
 }
