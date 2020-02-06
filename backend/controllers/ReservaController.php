@@ -31,11 +31,16 @@ class ReservaController extends Controller
                     [
                         'allow' => false,
                         'roles' => ['?'],
-                ],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                     [
                         'actions' => ['index', 'view', 'create', 'update', 'delete'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['Admin', 'Rececionista'],
                     ],
                 ],
             ],

@@ -30,9 +30,14 @@ class PedidoController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['index', 'view', 'update', 'delete'],
+                        'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['Admin'],
                     ],
                 ],
             ],

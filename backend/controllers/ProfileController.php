@@ -31,9 +31,14 @@ class ProfileController extends Controller
                         'roles' => ['?'],
                     ],
                     [
+                        'actions' => ['cliente', 'view', 'createcliente', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['Rececionista'],
+                    ],
+                    [
                         'actions' => ['cliente', 'funcionario', 'view', 'createcliente', 'createfuncionario', 'update', 'delete'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['Admin'],
                     ],
                 ],
             ],

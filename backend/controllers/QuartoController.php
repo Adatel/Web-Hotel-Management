@@ -30,9 +30,14 @@ class QuartoController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['Admin', 'Funcionário'],
                     ],
                 ],
             ],

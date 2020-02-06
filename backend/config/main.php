@@ -17,6 +17,12 @@ return [
         ],
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+            // uncomment if you want to cache RBAC items hierarchy
+            // 'cache' => 'cache',
+        ],
         'request' => [
             'parsers' => [
                 'application/json' => 'yii\web\JsonParser',
