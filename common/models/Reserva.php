@@ -41,7 +41,7 @@ class Reserva extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos', 'id_cliente'], 'required'],
+            [['data_entrada', 'data_saida', 'num_pessoas', 'num_quartos','quarto_solteiro', 'quarto_duplo', 'quarto_familia', 'quarto_casal', 'id_cliente'], 'required'],
             [['data_entrada', 'data_saida'], 'safe'],
             [['num_pessoas', 'num_quartos'], 'integer'],
             [['id_cliente'], 'exist', 'skipOnError' => true, 'targetClass' => Profile::className(), 'targetAttribute' => ['id_cliente' => 'id_user']],
